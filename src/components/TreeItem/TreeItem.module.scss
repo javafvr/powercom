@@ -1,0 +1,32 @@
+﻿@import "../../assets/styles/index";
+
+.treeItem {
+    list-style: none;
+    cursor: pointer;
+}
+
+.treeItemContent {
+    display: flex;
+    align-items: center;
+}
+
+.treeItem .treeItemContent .treeItemDropdownIcon{
+  transform: rotate(-90deg);
+}
+
+.treeItemContent {
+  padding: 8px;
+}
+
+.treeItemOpen > .treeItemContent > .treeItemDropdownIcon{
+  transform: rotate(0deg);
+}
+
+.treeItemContent > svg + span,
+.treeItemContent > svg + svg {
+  margin-left: 4px;
+}
+
+.treeItemList {
+  padding-left: 28px;
+}

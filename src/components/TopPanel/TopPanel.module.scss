@@ -1,0 +1,77 @@
+﻿@import "../../assets/styles/index";
+
+.topPanel {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 0px 0px 1px rgba(12, 26, 75, 0.24),
+    0px 3px 8px -1px rgba(50, 50, 71, 0.05);
+  background: $color-gray;
+  color: $color-gray-dark;
+  padding: 21px;
+
+  //typo
+  font-family: $main-font-family;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0em;
+
+}
+
+.topPanelGroup {
+  display: flex;
+  & + & {
+    margin-left: 24px;
+  }
+}
+
+.topPanelGroup.topPanelGroupLogo,
+.topPanelGroup.topPanelGroupLogo img {
+  width: 48px;
+  height: 48px;
+}
+
+.topPanelGroupItem {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+}
+
+.topPanelGroupItem a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+.topPanelGroupItem svg {
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.topPanelGroup.topPanelActions {
+  margin-left: auto;
+  align-items: center;
+}
+
+.topPanelGroup.topPanelActions .topPanelGroupItem {
+  padding: 0;
+  & + .topPanelGroupItem {
+    margin-left: 40px;
+  }
+}
+
+.topPanelGroup.topPanelActions .topPanelAvatar .topPanelAvatarOverflow,
+.topPanelGroup.topPanelActions .topPanelAvatarOverflow img {
+  width: 40px;
+  height: 40px;
+}
+
+.topPanelGroup.topPanelActions .topPanelAvatar .topPanelAvatarOverflow {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.topPanelGroup.topPanelActions .topPanelAvatar {
+  padding: 4px;
+}

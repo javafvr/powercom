@@ -1,0 +1,40 @@
+﻿@import "../../assets/styles/index";
+
+.sidebar {
+  position: absolute;
+  left: 0;
+  top: 96px;
+  width: 15%;
+  height: calc(100vh - 96px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  transition: 0.5s;
+  transform: translateX(-100%);
+  padding: 24px 43px;
+
+}
+.sidebarActive {
+  transform: translateX(0%);
+}
+
+.sidebarActive .sidebarBtn {
+  right: 0px;
+  transform: rotateZ(0deg);
+}
+
+.sidebarBtn {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 40px;
+  right: -48px;
+  cursor: pointer;
+  border-radius: 4px;
+  transform: rotateZ(180deg);
+}
+
+.sidebarBtn:hover {
+  background-color: rgba($color-gray-dark-2, 0.2);
+}

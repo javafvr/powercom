@@ -1,0 +1,12 @@
+﻿@import "../../assets/styles/index";
+
+.mainContent {
+  padding-top: 40px;
+  z-index: -2;
+  margin-left: 5%;
+  transition: margin 0.5s;
+}
+
+.mainContentSidebarOpen {
+  margin-left: 22%;
+}

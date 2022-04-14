@@ -1,0 +1,18 @@
+﻿<script setup></script>
+
+<template>
+  <!-- eslint-disable max-len -->
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M8.5 19L13 19L8 12L13 5L8.5 5L3.5 12L8.5 19Z" fill="#6E6F82" />
+    <path
+      d="M15.5 19L20 19L15 12L20 5L15.5 5L10.5 12L15.5 19Z"
+      fill="#6E6F82"
+    />
+  </svg>
+</template>
