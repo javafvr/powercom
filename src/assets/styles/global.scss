@@ -1,0 +1,22 @@
+﻿$main-font-family: "IBM Plex Sans", sans-serif;
+
+$spacing:
+  "XSS" 8px,
+  "XS" 16px,
+  "S" 24px,
+  "M" 32px,
+  "L" 48px,
+  "XL" 60px,
+  "XXL" 80px,
+  "XXXL" 96px;
+
+body {
+  font-family: $main-font-family;
+  margin: 0;
+}
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-family: $main-font-family;
+  }
+}

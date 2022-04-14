@@ -1,0 +1,20 @@
+﻿@import "../../assets/styles/index";
+
+// Flex helpers
+.flex {
+  display: flex;
+}
+
+.justifyBetween {
+  justify-content: space-between;
+}
+
+// Margins helpers (m[direction][size - (XSS - XXXL)])
+.mb {
+  @each $name, $size in $spacing {
+    &#{$name} {
+      margin-bottom: #{$size};
+    }
+  }
+}
+

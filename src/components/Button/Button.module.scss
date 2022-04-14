@@ -1,0 +1,71 @@
+﻿@import "../../assets/styles/index";
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+}
+
+.prepend {
+  display: flex;
+}
+
+.button .prepend + span {
+  margin-left: 8px;
+}
+
+// Type
+.outline {
+  border: 2px solid currentColor;
+}
+
+.solid {
+  background-color: currentColor;
+  box-shadow: 0px 0px 1px rgba(12, 26, 75, 0.24), 0px 3px 8px -1px rgba(50, 50, 71, 0.05);
+}
+
+// Colors
+.purple {
+  color: $color-purple;
+  &.solid {
+    color: $color-white;
+    background-color: $color-purple;
+  }
+  &.outline:hover {
+    color: $color-white;
+    background-color: $color-purple;
+  }
+}
+
+.green {
+  color: $color-green;
+  &.solid {
+    color: $color-white;
+    background-color: $color-green;
+  }
+  &.outline:hover {
+    color: $color-white;
+    background-color: $color-green;
+  }
+}
+
+
+
+// Size
+.M {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 12px 30px;
+  border-radius: 16px;
+}
+
+.L {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 12px 32px;
+  border-radius: 8px;
+}
