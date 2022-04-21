@@ -1,0 +1,91 @@
+﻿@import "../../assets/styles/index";
+
+.inputWrapper {
+  display: inline-flex;
+  border-bottom: 1px solid $color-gray-2;
+}
+
+.input {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  width: 100%;
+}
+
+.button svg path{
+  fill: currentColor;
+}
+
+.prepend {
+  display: flex;
+}
+
+.append {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.button .prepend + span {
+  margin-left: 8px;
+}
+
+// Type
+.outline {
+  border: 1px solid currentColor;
+}
+
+// Colors
+.purple {
+  color: $color-purple;
+  .input,
+  svg path,
+  .input::placeholder {
+    color: $color-purple;
+    fill: $color-purple;
+  }
+}
+
+.gray {
+  color: $color-gray;
+  border-color: rgba($color-gray-dark, 0.6);
+  .input,
+  svg path {
+    color: $color-black;
+    fill: $color-gray-dark;
+  }
+  .input::placeholder {
+    color: rgba($color-gray-dark, 0.4);
+  }
+}
+
+// Size
+.S {
+  font-size: 12px;
+  line-height: 14px;
+  padding: 8px 12px;
+}
+
+.outline.S {
+  padding: 6px 10px;
+  border-radius: 12px;
+}
+
+.M {
+  font-size: 12px;
+  line-height: 16px;
+  padding: 12px 30px;
+  border-radius: 16px;
+}
+
+.L {
+  font-size: 14px;
+  line-height: 24px;
+  padding: 12px 16px;
+  border-radius: 12px;
+}
+
+.shadow {
+  box-shadow: 0px 9px 28px 8px rgba(0, 0, 0, 0.05), 0px 6px 16px rgba(0, 0, 0, 0.08), 0px 3px 6px -4px rgba(0, 0, 0, 0.12);
+}

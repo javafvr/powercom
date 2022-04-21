@@ -1,4 +1,5 @@
 ﻿$main-font-family: "IBM Plex Sans", sans-serif;
+$main-transition: 0.5s;
 
 $spacing:
   "XSS" 8px,
@@ -9,6 +10,13 @@ $spacing:
   "XL" 60px,
   "XXL" 80px,
   "XXXL" 96px;
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
 
 body {
   font-family: $main-font-family;

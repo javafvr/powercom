@@ -7,12 +7,13 @@
   width: 15%;
   height: calc(100vh - 96px);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  transition: 0.5s;
+  transition: $main-transition;
   transform: translateX(-100%);
-  padding: 24px 43px;
+  padding: 43px 24px;
 
 }
 .sidebarActive {

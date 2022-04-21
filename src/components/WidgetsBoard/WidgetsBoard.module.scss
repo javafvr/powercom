@@ -1,9 +1,52 @@
 ﻿@import "../../assets/styles/index";
 
 .widgetsBoard {
-  margin-top: 48px;
+  padding-top: 32px;
 }
 
 .gridWrapper {
-  margin: 0 0 0 -24px;
+  margin: 0 -24px 0 -24px;
+}
+
+.previewGrid {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: -12px;
+  height: 100%;
+  min-height: 100%
+}
+
+.previewAddButton {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.previewGridItem {
+  margin: 12px;
+  position: relative;
+  max-height: 206px;
+  &:hover .previewAddButton,
+  &:hover .previewGridItemOverlay {
+    display: block;
+  }
+}
+
+.previewGridItemOverlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba($color-gray-3, 0.6);
+}
+
+.controls {
+  width: 100%;
 }

@@ -9,6 +9,10 @@
   justify-content: space-between;
 }
 
+.alignCenter {
+  align-items: center;
+}
+
 // Margins helpers (m[direction][size - (XSS - XXXL)])
 .mb {
   @each $name, $size in $spacing {
@@ -16,5 +20,39 @@
       margin-bottom: #{$size};
     }
   }
+}
+
+.mt {
+  @each $name, $size in $spacing {
+    &#{$name} {
+      margin-top: #{$size};
+    }
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: unset;
+}
+
+//Titles
+
+h3.title3 {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+}
+h4.title4 {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.25px;
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.w100 {
+  width:100%;
 }
 

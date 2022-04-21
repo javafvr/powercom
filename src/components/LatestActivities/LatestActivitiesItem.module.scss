@@ -1,0 +1,59 @@
+﻿@import "../../assets/styles/index";
+
+.latestActivitiesItem {
+  width: 100%;
+
+  & + & {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba($color-gray-dark-2, 0.1);
+  }
+}
+
+.header {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: $color-gray-dark-2;
+  svg + span {
+    margin-left: 4px;
+  }
+}
+
+.title {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: $color-black;
+}
+
+.subtitle {
+  font-weight: 400;
+  font-size: 9px;
+  line-height: 12px;
+
+  color: $color-black;
+}
+
+.status {
+  padding: 4px 0;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+
+  color: $color-gray-dark-2;
+
+}
+
+.blockItem {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  & + & {
+    margin-top: 4px;
+  }
+}
+
+.header + .blockItem {
+  margin-top: 8px;
+}

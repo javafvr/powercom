@@ -10,7 +10,7 @@ const props = defineProps({
     type: String,
     default: "purple",
     validator: function (value) {
-      return ["purple", "green"].indexOf(value) !== -1;
+      return ["purple", "green", "gray"].indexOf(value) !== -1;
     },
   },
   size: {
@@ -28,6 +28,14 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  shadow: {
+    type: Boolean,
+    default: false,
+  },
+  bold: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const classes = computed(() => ({
@@ -35,18 +43,25 @@ const classes = computed(() => ({
   [$style[props.size]]: props.size,
   [$style.outline]: props.outline,
   [$style.solid]: props.solid,
+  [$style.shadow]: props.shadow,
+  [$style.bold]: props.bold,
 }));
 </script>
 
 <template>
   <div :class="[$style.button, classes]">
-    <div v-if="$slots['prepend']" :class="$style.prepend"><slot name="prepend" /></div>
+    <div v-if="$slots['prepend']" :class="$style.prepend">
+      <slot name="prepend" />
+    </div>
     <span v-if="props.title">
-      {{props.title}}
+      {{ props.title }}
     </span>
+    <div v-if="$slots['append']" :class="$style.append">
+      <slot name="append" />
+    </div>
   </div>
 </template>
 
 <style lang="scss" module>
-@import "Button.module";
+@import "Button.module.scss";
 </style>
