@@ -40,7 +40,6 @@ const props = defineProps({
           <Button
             title="Connection type"
             color="purple"
-            @click="onClickEditHandler"
             size="S"
             bold
           >
