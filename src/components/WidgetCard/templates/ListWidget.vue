@@ -32,5 +32,5 @@ const props = defineProps({
 </template>
 
 <style lang="scss" module>
-@import "ListWidget.module";
+@import "@/components/WidgetCard/templates/ListWidget.module";
 </style>

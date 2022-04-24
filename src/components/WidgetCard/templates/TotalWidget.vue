@@ -43,5 +43,5 @@ const props = defineProps({
 </template>
 
 <style lang="scss" module>
-@import "TotalWidget.module";
+@import "@/components/WidgetCard/templates/TotalWidget.module";
 </style>

@@ -108,5 +108,5 @@ const props = defineProps({
 </template>
 
 <style lang="scss" module>
-@import "TotalChartWidget.module";
+@import "@/components/WidgetCard/templates/TotalChartWidget.module";
 </style>

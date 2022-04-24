@@ -79,5 +79,5 @@ const props = defineProps({
 </template>
 
 <style lang="scss" module>
-@import "SimpleWidget.module";
+@import "@/components/WidgetCard/templates/SimpleWidget.module";
 </style>

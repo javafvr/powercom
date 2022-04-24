@@ -35,5 +35,5 @@ const props = defineProps({
 </template>
 
 <style lang="scss" module>
-@import "AlertsWidget.module";
+@import "@/components/WidgetCard/templates/AlertsWidget.module";
 </style>

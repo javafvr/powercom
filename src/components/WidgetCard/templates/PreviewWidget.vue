@@ -21,5 +21,5 @@ const props = defineProps({
 </template>
 
 <style lang="scss" module>
-@import "PreviewWidget.module";
+@import "@/components/WidgetCard/templates/PreviewWidget.module";
 </style>
