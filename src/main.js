@@ -9,6 +9,10 @@ import {
   IconClipboard,
   IconChevronRight,
   IconArrowDropDown,
+  IconImportExport,
+  IconError,
+  IconPlugOff,
+  IconCheck
 } from "../src/components/Icon";
 
 createApp(App)
@@ -18,5 +22,9 @@ createApp(App)
   .component("IconClipboard", IconClipboard)
   .component("IconChevronRight", IconChevronRight)
   .component("IconArrowDropDown", IconArrowDropDown)
+  .component("IconImportExport", IconImportExport)
+  .component("IconError", IconError)
+  .component("IconPlugOff", IconPlugOff)
+  .component("IconCheck", IconCheck)
   .use(router)
   .mount("#app");

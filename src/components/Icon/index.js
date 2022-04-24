@@ -6,15 +6,19 @@ import IconDoubleArrow from "./IconDoubleArrow";
 import IconCheckboxOutline from "./IconCheckboxOutline";
 import IconArrowDropDown from "./IconArrowDropDown";
 import IconModeEdit from "./IconModeEdit";
-import IconCheckCircle  from "./IconCheckCircle";
-import IconPageView  from "./IconPageView";
-import IconContentAdd  from "./IconContentAdd";
-import IconNavigationClose  from "./IconNavigationClose";
-import IconDocument  from "./IconDocument";
-import IconClipboard  from "./IconClipboard";
-import IconCommand  from "./IconCommand";
-import IconWorkflow  from "./IconWorkflow";
-import IconChevronRight  from "./IconChevronRight";
+import IconCheckCircle from "./IconCheckCircle";
+import IconPageView from "./IconPageView";
+import IconContentAdd from "./IconContentAdd";
+import IconNavigationClose from "./IconNavigationClose";
+import IconDocument from "./IconDocument";
+import IconClipboard from "./IconClipboard";
+import IconCommand from "./IconCommand";
+import IconWorkflow from "./IconWorkflow";
+import IconChevronRight from "./IconChevronRight";
+import IconImportExport from "./IconImportExport";
+import IconError from "./IconError";
+import IconPlugOff from "./IconPlugOff";
+import IconCheck from "./IconCheck";
 
 export {
   IconMagnify,
@@ -33,5 +37,9 @@ export {
   IconClipboard,
   IconCommand,
   IconWorkflow,
-  IconChevronRight
+  IconChevronRight,
+  IconImportExport,
+  IconError,
+  IconPlugOff,
+  IconCheck,
 };

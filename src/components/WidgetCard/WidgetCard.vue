@@ -1,14 +1,38 @@
 ﻿<script setup>
-import { defineProps, defineEmits, ref } from "vue";
+import { defineProps, defineEmits } from "vue";
 import { SmartWidget } from "vue-smart-widget";
 import { Button } from "@/components/Button";
 import { IconNavigationClose } from "@/components/Icon/";
-import { ChartBar, ChartRadialGauge } from "@/components/ChartComponent";
+import PreviewWidget from "./templates/PreviewWidget";
+import AlertsWidget from "./templates/AlertsWidget";
+import SimpleWidget from "./templates/SimpleWidget";
+import ListWidget from "./templates/ListWidget";
+import TotalWidget from "./templates/TotalWidget";
+import TotalChartWidget from "./templates/TotalChartWidget";
 
 const props = defineProps({
   title: {
     type: String,
     required: false,
+  },
+  template: {
+    type: String,
+    required: false,
+    default: "simpleWidget",
+    validator: function (value) {
+      return (
+        [
+          "",
+          "totalChartWidget",
+          "totalWidget",
+          "previewWidget",
+          "gaugeWidget",
+          "simpleWidget",
+          "listWidget",
+          "alertsWidget",
+        ].indexOf(value) !== -1
+      );
+    },
   },
   isEditMode: {
     type: Boolean,
@@ -20,10 +44,6 @@ const props = defineProps({
     required: false,
   },
   isPreviewMode: {
-    type: Boolean,
-    default: false,
-  },
-  isCharts: {
     type: Boolean,
     default: false,
   },
@@ -39,79 +59,67 @@ const props = defineProps({
     type: String,
     default: "",
   },
+  indicators: {
+    type: [Boolean, Object],
+    default: false,
+  },
+  chart: {
+    type: [Boolean, Object],
+    default: false,
+  },
+  content: {
+    type: [Boolean, Array],
+    default: false,
+  },
+  selector: {
+    type: [Boolean, Object],
+    default: false,
+  },
 });
 
 const emit = defineEmits(["widget:close"]);
-
-// const chartData = ref({
-//   type: "Bar",
-//   labels: ["NOV 3", "NOV 3", "NOV 3", "NOV 3", "NOV 3"],
-//   datasets: [
-//     {
-//       data: [64, 68, 77, 53, 77],
-//       backgroundColor: "#ffffff",
-//       borderRadius: "4",
-//       borderSkipped: false,
-//     },
-//   ],
-// });
-const value = 56;
-const chartData = ref({
-  labels: ["completed", "left"],
-  datasets: [
-    {
-      data: [value, 100-value],
-      borderWidth: 0,
-      text: () => {return `${value}%`},
-      backgroundColor: '#ED6C45',
-    },
-  ],
-});
-
-
 </script>
 
 <template>
   <SmartWidget
     :class="[$style.widgetCard, $style[props.color]]"
     simple
-    :padding="16"
     :title="props.title"
   >
-    <img
-      v-if="props.isPreviewMode && props.previewUrl"
-      :src="props.previewUrl"
+    <PreviewWidget
+      v-if="props.template === 'previewWidget'"
+      :image="props.previewUrl"
       :alt="props.id"
-      :class="$style.image"
     />
-    <span v-else>
-      {{ props.title }}
-      <div :class="[$style.mainContent, $style.mbXS]">
-        <div
-          :class="[$style.mainContentItem, $style.left, $style.mainIndicator]"
-        >
-          77%
-        </div>
-        <div :class="[$style.mainContentItem, $style.right]">
-          <span :class="[$style.secondIndicator]">+24%</span>
-          <span :class="[$style.secondIndicatorSmall]">Last 24 Hours</span>
-        </div>
-      </div>
-      <div v-if="isCharts" :class="$style.chart">
-        <ChartBar
-          v-if="chartData.type === 'Bar'"
-          height="102px"
-          width="100%"
-          :chartData="chartData"
-        />
-        <ChartRadialGauge
-          height="96"
-          width="96"
-          chartId="radial-gauge"
-          :chartData="chartData"
-        />
-      </div>
-    </span>
+    <AlertsWidget
+      v-if="props.template === 'alertsWidget'"
+      :title="props.title"
+      :content="props.content"
+    />
+    <SimpleWidget
+      v-if="props.template === 'simpleWidget'"
+      :title="props.title"
+      :indicators="props.indicators"
+      :chart="props.chart"
+      :selector="props.selector"
+    />
+    <TotalChartWidget
+      v-if="props.template === 'totalChartWidget'"
+      :title="props.title"
+      :indicators="props.indicators"
+      :chart="props.chart"
+      :color="props.color"
+    />
+    <TotalWidget
+      v-if="props.template === 'totalWidget'"
+      :title="props.title"
+      :indicators="props.indicators"
+    />
+    <ListWidget
+      v-if="props.template === 'listWidget'"
+      :title="props.title"
+      :list="props.content"
+    />
     <span
       v-if="props.isEditMode && !props.isPreviewMode"
       :class="$style.closeBtn"
@@ -136,7 +144,7 @@ const chartData = ref({
   height: 100%;
 }
 .widget-body__content {
-  padding: 16px;
+  padding: 0px;
   width: 100%;
   height: 100%;
 }

@@ -2,6 +2,7 @@
 $main-transition: 0.5s;
 
 $spacing:
+  "XSSS" 4px,
   "XSS" 8px,
   "XS" 16px,
   "S" 24px,
@@ -20,6 +21,10 @@ html {
 
 body {
   font-family: $main-font-family;
+  margin: 0;
+}
+
+ul {
   margin: 0;
 }
 

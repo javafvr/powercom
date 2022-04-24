@@ -1,35 +1,14 @@
-﻿@import "../../assets/styles/index";
+﻿@import "../../../assets/styles/index";
 
 // Card settings
 $card-padding: 16px;
 
-.widgetCard {
-  @extend .shadow;
-  position: relative;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  overflow: hidden;
-
-  border-radius: 16px;
-  color: rgba($color-white, 0.8);
-  background-color: $color-gray;
-
-  font-family: $main-font-family;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-}
-
-.closeBtn {
-  position: absolute;
-  top: $card-padding;
-  right: $card-padding;
-}
-
 .title {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0px;
+  margin-bottom: 8px;
   & + .mainContent {
     margin-bottom: 4px;
   }
@@ -38,9 +17,12 @@ $card-padding: 16px;
 .contentWrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-self: center;
+  justify-content: center;
+  align-items: center;
   height: 100%;
+  max-width:75%;
+  padding: $card-padding;
+  margin: 0 auto;
 }
 
 .mainContent {
@@ -67,8 +49,13 @@ $card-padding: 16px;
   text-align: right;
 }
 
-.chart {
-
+.selector {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: center;
+  display: flex;
 }
 
 .mainIndicator {
@@ -121,38 +108,7 @@ $card-padding: 16px;
 
 }
 
-.selector {
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 24px;
-  letter-spacing: 0px;
-  text-align: center;
-  display: flex;
-}
-
 // Colors
-.yellow {
-  background: $gradient-3;
-}
-.green {
-  background: $gradient-4;
-}
-.red {
-  background: $gradient-5;
-}
-.purple {
-  background: $gradient-7;
-}
-.orange {
-  background: $gradient-6 ;
-}
-.pink {
-  background: $gradient-1;
-}
-.blue {
-  background: $gradient-8;
-}
-
 .gray {
   .title {
     color: rgba($color-black, 0.8);
@@ -163,8 +119,4 @@ $card-padding: 16px;
     fill: rgba($color-black, 0.8);;
   }
   background-color: $color-gray;
-}
-
-.shadow {
-  box-shadow: 0px 0px 1px rgba(12, 26, 75, 0.24), 0px 3px 8px -1px rgba(50, 50, 71, 0.05);
 }

@@ -123,10 +123,18 @@ onMounted(() => {
         <template v-for="item in items" v-slot:[item.i]>
           <WidgetCard
             :key="item.i"
-            :title="item.i"
+            :title="item.title"
             :color="item.color"
+            :template="item.template"
+            :indicators="item.indicators"
+            :chart="item.chart"
             :isEditMode="isEditMode"
+            :isPreviewMode="item.type === 'prewievWidget'"
+            :previewUrl="item.previewUrl"
+            :content="item.content"
             :isCharts="true"
+            :selector="item.selector"
+            :padding="0"
             @widget:close="onWidgetCloseHandler(item)"
           />
         </template>
@@ -158,11 +166,18 @@ onMounted(() => {
             >
               <WidgetCard
                 :key="item.id"
-                :title="item.id"
+                :title="item.title"
                 :color="item.color"
+                :template="item.template"
+                :indicators="item.indicators"
+                :chart="item.chart"
+                :isEditMode="isEditMode"
                 :isPreviewMode="true"
                 :previewUrl="item.previewUrl"
+                :content="item.content"
                 @widget:close="onWidgetCloseHandler(item)"
+                :padding="0"
+                :selector="item.selector"
               />
               <div :class="$style.previewGridItemOverlay"></div>
               <span :class="$style.previewAddButton">

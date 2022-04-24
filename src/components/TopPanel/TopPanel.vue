@@ -30,7 +30,7 @@ const props = defineProps({
       </div>
     </div>
     <div :class="[$style.topPanelGroup, $style.topPanelActions]">
-      <div :class="$style.topPanelGroupItem"><IconMagnify /></div>
+      <div :class="$style.topPanelGroupItem"><IconMagnify width="24" height="24" /></div>
       <div :class="$style.topPanelGroupItem"><IconNotifications /></div>
       <div :class="$style.topPanelGroupItem"><IconSettings /></div>
       <div :class="[$style.topPanelGroupItem, $style.topPanelAvatar]">

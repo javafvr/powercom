@@ -1,5 +1,7 @@
 ﻿<script setup>
 import { defineProps } from "vue";
+import { generateChart } from "vue-chartjs";
+import { DoughnutController } from "chart.js";
 import {
   Chart as ChartJS,
   Title,
@@ -26,9 +28,6 @@ const props = defineProps({
     default: () => {},
   },
 });
-
-import { generateChart } from "vue-chartjs";
-import { DoughnutController } from "chart.js";
 
 class RadialGaugeController extends DoughnutController {
   drawArc(numArc) {
@@ -136,7 +135,6 @@ class RadialGaugeController extends DoughnutController {
     ctx.textBaseline = "middle";
     let textWidth = ctx.measureText(text).width;
     let textX = Math.round(arc.x - textWidth / 2);
-
     if (textWidth < 2 * this.innerRadius * 0.8) {
       ctx.fillText(`${text}`, textX, arc.y);
     }
@@ -175,6 +173,9 @@ const chartOptionsDefaults = {
   },
   labels: ["Red", "Blue", "Yellow"],
   plugins: {
+    datalabels: {
+      display: false
+    },
     legend: {
       display: false,
     },

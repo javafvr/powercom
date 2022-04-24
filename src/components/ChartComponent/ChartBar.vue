@@ -117,7 +117,3 @@ const chartOptionsDefaults = ref({
     <Bar :chart-data="props.chartData" :chart-options="props.chartOptions || chartOptionsDefaults" />
   </div>
 </template>
-
-<style lang="scss" module>
-@import "ChartBar.module";
-</style>

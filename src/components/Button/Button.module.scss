@@ -95,6 +95,10 @@
   line-height: 14px;
   padding: 8px;
   border-radius: 8px;
+  letter-spacing: 0.4000000059604645px;
+  .prepend + span {
+    margin-left: 4px;
+  }
 }
 
 .M {
