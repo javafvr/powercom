@@ -5,31 +5,67 @@ import {
   IconSettings,
   IconDetails,
 } from "../Icon";
-import { defineProps } from "vue";
+import { defineProps, useCssModule, computed, ref } from "vue";
 
 const props = defineProps({
   menuItems: Array,
   user: Object,
+  logoUrl: {
+    type: String,
+    default: "./images/logo.svg"
+  },
+  color: {
+    type: String,
+    default: "",
+    validator: function (value) {
+      return ["", "purple"].indexOf(value) !== -1;
+    },
+  },
 });
+
+const $style = useCssModule();
+const isOpenMobileMenu = ref(false);
+const classes = computed(() => ({
+  [$style.menuOpened]: isOpenMobileMenu.value,
+}));
+
 </script>
 <template>
-  <div :class="$style.topPanel">
-    <div :class="[$style.topPanelGroup, $style.topPanelGroupLogo]">
-      <img :src="require('./images/logo.svg')" alt="logo" />
+  <div :class="[$style.panel, classes, $style[props.color]]">
+    <div :class="[$style.group, $style.logo]">
+      <img :src="require(`${props.logoUrl}`)" alt="logo" />
     </div>
-    <div :class="$style.topPanelGroup">
-      <div
+    <div :class="[$style.group, $style.burger]" @click="isOpenMobileMenu = !isOpenMobileMenu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+      <ul :class="[$style.mobileMenu]">
+        <li
+          v-for="(item, index) in props.menuItems"
+          :key="index"
+          :class="$style.menuItem"
+        >
+          <router-link :to="item.url" v-slot="{ isExactActive }">
+            <div :class="[$style.link, isExactActive && $style.active]" >{{ item.title }}</div>
+          </router-link>
+        </li>
+      </ul>
+    <ul :class="[$style.group, $style.menuDesktop]">
+      <li
         v-for="(item, index) in props.menuItems"
         :key="index"
         :class="$style.topPanelGroupItem"
       >
-        <router-link :to="item.url">{{ item.title }}</router-link>
-      </div>
-      <div :class="$style.topPanelGroupItem">
+        <router-link :to="item.url" v-slot="{ isExactActive }">
+          <div :class="[$style.link, isExactActive && $style.active]" >{{ item.title }}</div>
+        </router-link>
+      </li>
+      <li :class="$style.topPanelGroupItem">
         <IconDetails />
-      </div>
-    </div>
-    <div :class="[$style.topPanelGroup, $style.topPanelActions]">
+      </li>
+    </ul>
+    <div :class="[$style.group, $style.topPanelActions]">
       <div :class="$style.topPanelGroupItem"><IconMagnify width="24" height="24" /></div>
       <div :class="$style.topPanelGroupItem"><IconNotifications /></div>
       <div :class="$style.topPanelGroupItem"><IconSettings /></div>

@@ -15,7 +15,11 @@ import {
   IconCheck
 } from "../src/components/Icon";
 
+import { DefaultLayout, VeeLayout } from './layouts'
+
 createApp(App)
+  .component('default-layout', DefaultLayout)
+  .component('vee-layout', VeeLayout)
   .component("IconCommand", IconCommand)
   .component("IconDocument", IconDocument)
   .component("IconWorkflow", IconWorkflow)

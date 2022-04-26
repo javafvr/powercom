@@ -1,0 +1,57 @@
+﻿@import "../../assets/styles/index";
+
+.collapsible {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  width: 100%;
+}
+
+.trigger {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  text-align: inherit;
+  color: inherit;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+
+  svg {
+    fill: currentColor;
+    margin-left: 10px;
+    transform: rotate(-90deg);
+  }
+}
+
+.decoration {
+
+}
+
+.content {
+  overflow: hidden;
+}
+.contentInner {
+  transition: all ease 400ms;
+  height: auto;
+}
+
+.triggerOpen .contentInner {
+  height: auto;
+}
+
+.triggerOpen svg {
+  transform: rotate(0deg);
+}
+
+.triggerClosed .contentInner {
+  height: 0px;
+}

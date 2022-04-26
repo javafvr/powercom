@@ -8,13 +8,15 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "chart.js": "^3.7.1",
     "chartjs-chart-radial-gauge": "^1.1.0",
     "chartjs-plugin-datalabels": "^2.0.0",
     "core-js": "^3.8.3",
+    "gh-pages": "^3.2.3",
     "vue": "^3.2.13",
     "vue-chartjs": "^4.0.5",
     "vue-router": "4",

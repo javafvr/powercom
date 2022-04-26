@@ -1,0 +1,39 @@
+﻿@import "../../assets/styles/index";
+
+.advancedFilter {
+  max-width: 262px;
+}
+
+.itemsContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin: -8px 0 0 -8px;
+}
+
+.item {
+  display: flex;
+  margin: 8px 0 0 8px;
+  max-width: 136px;
+}
+
+.header {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.advancedFilterLink {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.25px;
+  text-decoration-line: underline;
+  color: $color-purple;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.itemsContainer + .advancedFilterLink {
+  margin-top: 8px;
+}

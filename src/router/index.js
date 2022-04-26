@@ -2,6 +2,7 @@
 import HomePage from "@/views/HomePage.vue";
 import LoginPage from "@/views/LoginPage.vue";
 import DashboardPage from "@/views/DashboardPage.vue";
+import VeePage from "@/views/VeePage.vue";
 
 const routerHistory = createWebHistory();
 const router = createRouter({
@@ -11,6 +12,7 @@ const router = createRouter({
       path: "/",
       component: HomePage,
       meta: {
+        layout: 'default-layout',
         breadcrumb: [
           {
             text: 'Home'
@@ -26,6 +28,7 @@ const router = createRouter({
       path: "/dashboard",
       component: DashboardPage,
       meta: {
+        layout: 'default-layout',
         breadcrumb: [
           {
             text: 'Home',
@@ -33,6 +36,22 @@ const router = createRouter({
           },
           {
             text: 'MDM',
+          }
+        ]
+      }
+    },
+    {
+      path: "/vee",
+      component: VeePage,
+      meta: {
+        layout: 'vee-layout',
+        breadcrumb: [
+          {
+            text: 'Home',
+            link: '/'
+          },
+          {
+            text: 'vee',
           }
         ]
       }

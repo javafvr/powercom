@@ -1,0 +1,51 @@
+﻿@import "../../assets/styles/index";
+
+.sideMenu {
+  position: absolute;
+  left: 0;
+  top: 96px;
+  bottom: 0;
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: $color-purple;
+  color: $color-white;
+  transition: $main-transition;
+  padding: 51px 24px;
+}
+
+.header {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: $color-gray;
+  cursor: pointer;
+}
+
+.list {
+  list-style-type: none;
+  padding: 22px 0 22px 32px;
+}
+
+.listItem a,
+.listItem {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  text-decoration: none;
+  color: $color-gray;
+  & + & {
+    margin-top: 22px;
+  }
+  &:hover {
+    font-weight: 700;
+  }
+}
+
+.block + .block {
+  margin-top: 22px;
+}

@@ -47,3 +47,15 @@
   background-color: $color-purple;
   border-color: $color-purple;
 }
+
+.inputWrapper + .label {
+  margin-left: 8px;
+}
+
+.label {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: $color-black;
+}

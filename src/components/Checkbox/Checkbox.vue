@@ -60,7 +60,7 @@ onMounted(() => {
         type="checkbox"
         :class="[$style.input]"
         :indeterminate.prop="isIndeterminate"
-        @click="updateValue"
+        @click.stop="updateValue"
         :value="modelValue"
       />
       <span v-if="isChecked && !isIndeterminate" :class="$style.checkmark">
@@ -68,7 +68,9 @@ onMounted(() => {
       </span>
       <span v-if="isIndeterminate" :class="$style.indeterminate"></span>
     </div>
-    {{ props.label }}
+    <div :class="$style.label">
+      {{ props.label }}
+    </div>
   </label>
 </template>
 
