@@ -19,57 +19,6 @@ const currentUser = {
   title: "John Doe",
   image: require("@/components/TopPanel/images/user1.jpg"),
 };
-// const onCloseClickHandler = (event) => {
-//   isSidebarOpened.value = event;
-// };
-// const treeData = ref([
-//   {
-//     name: "Israel",
-//     children: [
-//       {
-//         name: "DEMO",
-//         children: [{ name: "Fedor_Demo" }],
-//       },
-//     ],
-//   },
-//   {
-//     name: "DEMO",
-//     children: [
-//       {
-//         name: "DEMO",
-//         children: [{ name: "Fedor_Demo" }],
-//       },
-//     ],
-//   },
-//   {
-//     name: "DEMO",
-//     children: [
-//       {
-//         name: "DEMO",
-//         children: [{ name: "Fedor_Demo" }],
-//       },
-//     ],
-//   },
-//   {
-//     name: "DEMO",
-//     children: [
-//       {
-//         name: "DEMO",
-//         children: [{ name: "Fedor_Demo" }],
-//       },
-//     ],
-//   },
-//   {
-//     name: "DEMO",
-//     children: [
-//       {
-//         name: "DEMO",
-//         children: [{ name: "Fedor_Demo" }],
-//       },
-//     ],
-//   },
-// ]);
-
 
 const sidebarMenu = ref([
   {
@@ -80,24 +29,24 @@ const sidebarMenu = ref([
       {
         id: 1,
         title: "Alerts",
-        url: "/"
+        url: "/",
       },
       {
         id: 2,
         title: "Alerts Settings",
-        url: "/"
+        url: "/",
       },
       {
         id: 3,
         title: "Notification",
-        url: "/"
+        url: "/",
       },
       {
         id: 4,
         title: "Pairing",
-        url: "/"
+        url: "/",
       },
-    ]
+    ],
   },
   {
     id: 5,
@@ -107,30 +56,30 @@ const sidebarMenu = ref([
       {
         id: 6,
         title: "Alerts",
-        url: "/"
+        url: "/",
       },
       {
         id: 7,
         title: "Alerts Settings",
-        url: "/"
+        url: "/",
       },
       {
         id: 8,
         title: "Notification",
-        url: "/"
+        url: "/",
       },
       {
         id: 9,
         title: "Pairing",
-        url: "/"
+        url: "/",
       },
-    ]
+    ],
   },
   {
     id: 10,
     title: "Notification Time",
-    url: "/"
-  }
+    url: "/",
+  },
 ]);
 const latestActivities = ref([
   {
@@ -180,31 +129,66 @@ const latestActivities = ref([
 ]);
 </script>
 <template>
-  <div>
-    <div id="nav">
-      <TopPanel :menuItems="menuItems" :user="currentUser" color="purple" logoUrl="./images/logo-white.svg"/>
-    </div>
-    <div class="container">
-      <SideMenu :items="sidebarMenu"/>
-      <main>
-        <MainContent :isStaticSideMenu="true">
-          <router-view></router-view>
-        </MainContent>
-      </main>
-      <aside>
-        <LatestActivities :items="latestActivities" />
-      </aside>
-    </div>
+  <div class="container">
+    <nav>
+      <TopPanel
+        :menuItems="menuItems"
+        :user="currentUser"
+        color="purple"
+        logoUrl="./images/logo-white.svg"
+      />
+    </nav>
+    <sidebar>
+      <SideMenu :items="sidebarMenu" />
+    </sidebar>
+    <main>
+      <MainContent :isStaticSideMenu="true">
+        <router-view></router-view>
+      </MainContent>
+    </main>
+    <aside>
+      <LatestActivities :items="latestActivities" />
+    </aside>
   </div>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 .container {
   display: grid;
-  grid-template-columns: 1fr minmax(150px, 20%);
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.1fr 0.5fr 3.5fr 2fr;
+  grid-template-areas: "nav" "sidebar" "main" "aside";
+  grid-gap: 0px;
 }
 
+sidebar {
+  grid-area: sidebar;
+}
 aside {
-  padding: 80px 24px 0 24px;
+  grid-area: aside;
+  padding: 20px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+nav {
+  grid-area: nav;
+}
+main {
+  grid-area: main;
+}
+
+@media only screen and (min-width: 576px) {
+  .container {
+    height: 100vh;
+    grid-template-columns: 0.95fr 2.9fr 0.75fr;
+    grid-template-rows: 0.2fr 1.5fr;
+    grid-template-areas: "nav nav nav" "sidebar main aside";
+    grid-gap: 0 24px;
+  }
+  aside {
+    padding: 80px 0 0 0;
+  }
 }
 </style>
 <style lang="sass" module>

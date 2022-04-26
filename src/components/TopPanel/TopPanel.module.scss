@@ -203,20 +203,20 @@
 
 //Responsive
 .panel {
-  @include respond-to(lg) {
+  @include respond-to(xl) {
     padding: 21px;
   };
 }
 
 .group.logo,
 .group.menuDesktop {
-  @include respond-to(lg) {
+  @include respond-to(xl) {
     display: flex;
   };
 }
 
 .group.burger {
-  @include respond-to(lg) {
+  @include respond-to(xl) {
     display: none;
   };
 }

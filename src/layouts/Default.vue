@@ -144,14 +144,14 @@ const latestActivities = ref([
   </div>
 </template>
 <style lang="scss">
-.container {
-  display: grid;
-  grid-template-columns: 1fr minmax(150px, 20%);
-}
+// .container {
+//   display: grid;
+//   grid-template-columns: 1fr minmax(150px, 20%);
+// }
 
-aside {
-  padding: 80px 24px 0 24px;
-}
+// aside {
+//   padding: 80px 24px 0 24px;
+// }
 </style>
 <style lang="sass" module>
 @import "@/assets/styles/utils.module"
