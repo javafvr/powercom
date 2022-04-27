@@ -32,6 +32,8 @@
   color: $color-purple;
   margin-left: auto;
   cursor: pointer;
+  width: 100%;
+  text-align: right;
 }
 
 .itemsContainer + .advancedFilterLink {

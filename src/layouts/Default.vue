@@ -1,10 +1,10 @@
 ﻿<script setup>
 import TopPanel from "@/components/TopPanel";
-import Sidebar from "@/components/Sidebar";
+import { SidebarSlider } from "@/components/SidebarSlider";
 import MainContent from "@/components/MainContent";
 import TreeData from "@/components/TreeData";
 import LatestActivities from "@/components/LatestActivities";
-import Search from "@/components/Search";
+import AdvancedFilter from "@/components/AdvancedFilter";
 import { ref } from "vue";
 const menuItems = [
   { url: "/", title: "Components" },
@@ -23,6 +23,7 @@ const currentUser = {
 };
 const isSidebarOpened = ref(true);
 const onCloseClickHandler = (event) => {
+  console.log(event)
   isSidebarOpened.value = event;
 };
 const treeData = ref([
@@ -58,7 +59,7 @@ const treeData = ref([
     children: [
       {
         name: "DEMO",
-        children: [{ name: "Fedor_Demo" }],
+        children: [{ name: "Fedor_Demo2", categories: [ "postpaid" ]}],
       },
     ],
   },
@@ -66,11 +67,48 @@ const treeData = ref([
     name: "DEMO",
     children: [
       {
-        name: "DEMO",
-        children: [{ name: "Fedor_Demo" }],
+        name: "DEMO1",
+        categories: [ "prepaid" ],
+        children: [{ name: "Fedor_Demo_payment" }],
       },
     ],
   },
+]);
+
+const categories = ref([
+    {
+      id: "paymentType",
+      name: "Payment type",
+      inputType: "select",
+      options: [
+        {title: "Prepaid", value: "prepaid", selected: "checked"},
+        {title: "Postpaid", value: "postpaid", selected: "unchecked"}
+      ]
+    },
+    {
+      id: "rateType",
+      name: "Rate type",
+      inputType: "select",
+      options: [
+        {title: "Placeholder", value: "Placeholder", selected: "checked"},
+        {title: "Area", value: "Area", selected: "unchecked"}
+      ]
+    },
+    {
+      id: "connectionType",
+      name: "Connection type",
+      inputType: "select",
+      options: [
+        {title: "Wifi", value: "Wifi", selected: "checked"},
+        {title: "Lan", value: "Lan", selected: "unchecked"}
+      ]
+    },
+    {
+      id: "netMetering",
+      name: "Net metering",
+      inputType: "input",
+      value: "meter"
+    },
 ]);
 
 const filteredTree = ref([]);
@@ -122,36 +160,82 @@ const latestActivities = ref([
 ]);
 </script>
 <template>
-  <div clsaa="container">
-    <div id="nav">
+  <div :class="['container', { 'sidebar-opened': isSidebarOpened }]">
+    <nav>
       <TopPanel :menuItems="menuItems" :user="currentUser" />
-    </div>
-    <div class="container">
-      <Sidebar @side-menu:state="onCloseClickHandler($event)">
-        <h4 :class="[$style.title4]">Areas</h4>
-        <Search v-model="filteredTree" :data="treeData" outline/>
-        <TreeData :items="filteredTree" />
-      </Sidebar>
-      <main>
-        <MainContent :isSidebarOpened="isSidebarOpened">
-          <router-view></router-view>
-        </MainContent>
-      </main>
-      <aside>
-        <LatestActivities :items="latestActivities" />
-      </aside>
-    </div>
+    </nav>
+    <aside class="menu">
+      <SidebarSlider @side-menu:state="onCloseClickHandler($event)">
+        <div :class="$style.w100" v-show="isSidebarOpened">
+          <h4 :class="[$style.title4, $style.mbXS]">Areas</h4>
+          <div :class="[$style.mbXS]">
+            <AdvancedFilter v-model="filteredTree" :data="treeData" :categories="categories"/>
+          </div>
+          <TreeData :items="filteredTree" />
+        </div>
+      </SidebarSlider>
+    </aside>
+    <main>
+      <MainContent>
+        <router-view></router-view>
+      </MainContent>
+    </main>
+    <aside>
+      <LatestActivities :items="latestActivities" />
+    </aside>
   </div>
 </template>
-<style lang="scss">
-// .container {
-//   display: grid;
-//   grid-template-columns: 1fr minmax(150px, 20%);
-// }
+<style lang="scss" scoped>
+@import "@/assets/styles/index";
+.container {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 0.1fr 0.5fr auto 2fr;
+  grid-template-areas: "nav" "sidemenu" "main" "aside";
+  grid-gap: 0px;
+}
 
-// aside {
-//   padding: 80px 24px 0 24px;
-// }
+aside.menu {
+  grid-area: sidemenu;
+  width: 100%;
+  padding-top: 40px;
+  transition: all $main-transition;
+}
+aside {
+  grid-area: aside;
+  padding: 20px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 100%;
+}
+nav {
+  grid-area: nav;
+}
+main {
+  grid-area: main;
+}
+
+@media only screen and (min-width: 576px) {
+  .container {
+    height: 100vh;
+    grid-template-columns: auto 2fr 0.6fr;
+    grid-template-rows: 0.2fr 1.5fr;
+    grid-template-areas: "nav nav nav" "sidemenu main aside";
+    grid-gap: 0 24px;
+  }
+  .container.sidebar-opened {
+    aside.menu {
+      width: 285px;
+    }
+  }
+  aside {
+    padding: 80px 0 0 0;
+  }
+  aside.menu {
+    width: 48px;
+  }
+}
 </style>
 <style lang="sass" module>
 @import "@/assets/styles/utils.module"

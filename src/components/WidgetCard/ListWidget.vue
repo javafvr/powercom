@@ -6,7 +6,7 @@ const props = defineProps({
     type: String,
     default: "",
   },
-  content: {
+  list: {
     type: [Boolean, Array],
     default: false,
   },
@@ -17,23 +17,20 @@ const props = defineProps({
   <div :class="$style.contentWrapper">
     <div :class="$style.header">
       <div :class="[$style.title]">
-        <IconError />
+        <IconPlugOff />
         <span>{{ props.title }}</span>
       </div>
     </div>
-    <div v-if="props.content" :class="$style.content">
-      <div v-for="record in props.content" :key="record.title" :class="$style.contentItem">
-        <div :class="$style.contentTitle">
+    <ul v-if="props.list" :class="$style.list">
+      <li v-for="record in props.list" :key="record.title" :class="$style.listItem">
+        <div :class="$style.listItemTitle">
           {{record.title}}
         </div>
-        <div :class="$style.contentSubTitle">
-          {{record.subtitle}}
-        </div>
-      </div>
-    </div>
+      </li>
+    </ul>
   </div>
 </template>
 
 <style lang="scss" module>
-@import "@/components/WidgetCard/templates/AlertsWidget.module";
+@import "./ListWidget.module";
 </style>

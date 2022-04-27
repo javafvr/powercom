@@ -1,20 +1,14 @@
 ﻿<script setup>
 import { defineProps } from "vue";
-import { Button } from "@/components/Button";
 import {
   ChartBar,
   ChartRadialGauge,
-  ChartPie,
 } from "@/components/ChartComponent";
 
 const props = defineProps({
   title: {
     type: String,
     default: "",
-  },
-  color: {
-    type: String,
-    default: "blue",
   },
   indicators: {
     type: [Boolean, Object],
@@ -32,23 +26,9 @@ const props = defineProps({
 </script>
 
 <template>
-  <div :class="[$style.contentWrapper, $style[props.color]]">
+  <div :class="$style.contentWrapper">
     <div :class="$style.header">
-      <div :class="[$style.title, $style.mbXSSS]">
-        <span>{{ props.title }}</span>
-        <div :class="$style.controls">
-          <Button
-            title="Connection type"
-            color="purple"
-            size="S"
-            bold
-          >
-            <template #prepend>
-              <IconImportExport />
-            </template>
-          </Button>
-        </div>
-      </div>
+      <div :class="[$style.title, $style.mbXSSS]">{{ props.title }}</div>
       <div :class="[$style.mainContent, $style.mbXS]">
         <div
           v-if="props.indicators"
@@ -74,9 +54,7 @@ const props = defineProps({
           :class="[$style.mainContentItem, $style.left]"
         >
           <span :class="[$style.secondIndicator]">
-            <div :class="$style.selector">
-              {{ props.selector.options[0].title }} <IconArrowDropDown />
-            </div>
+            <div :class="$style.selector">{{props.selector.options[0].title}} <IconArrowDropDown /></div>
           </span>
         </div>
       </div>
@@ -96,17 +74,10 @@ const props = defineProps({
         chartId="radial-gauge"
         :chartData="chart.data"
       />
-      <ChartPie
-        v-if="chart.type == 'pie'"
-        height="96"
-        width="96"
-        chartId="chart-pie"
-        :chartData="chart.data"
-      />
     </div>
   </div>
 </template>
 
 <style lang="scss" module>
-@import "@/components/WidgetCard/templates/TotalChartWidget.module";
+@import "./SimpleWidget.module";
 </style>

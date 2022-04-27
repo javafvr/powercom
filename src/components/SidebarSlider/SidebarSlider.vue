@@ -7,7 +7,7 @@ const isActive = ref(true);
 const emit = defineEmits(["side-menu:state"]);
 
 const classes = computed(() => ({
-  [$style.sidebarActive]: isActive.value,
+  [$style.active]: isActive.value,
 }));
 
 const onCloseClickHandler = () => {
@@ -17,12 +17,12 @@ const onCloseClickHandler = () => {
 </script>
 
 <template>
-  <div :class="[$style.sidebar, classes]">
-    <div @click="onCloseClickHandler" :class="$style.sidebarBtn"><IconDoubleArrow /></div>
+  <div :class="[$style.sidebarSlider, classes]">
+    <div @click="onCloseClickHandler" :class="$style.toggleBtn"><IconDoubleArrow /></div>
     <slot />
   </div>
 </template>
 
 <style lang="scss" module>
-@import "Sidebar.module";
+@import "SidebarSlider.module";
 </style>
