@@ -213,6 +213,7 @@ nav {
   grid-area: nav;
 }
 main {
+  padding: 10px;
   grid-area: main;
 }
 

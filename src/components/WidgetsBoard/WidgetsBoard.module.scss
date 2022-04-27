@@ -5,7 +5,7 @@
 }
 
 .gridWrapper {
-  margin: 0 -24px 0 -24px;
+  // margin: 0 -24px 0 -24px;
 }
 
 .previewGrid {
@@ -49,4 +49,10 @@
 
 .controls {
   width: 100%;
+}
+
+@include respond-to(sm) {
+  .gridWrapper {
+    margin: 0 -24px 0 -24px;
+  }
 }
