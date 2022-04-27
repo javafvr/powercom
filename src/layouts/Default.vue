@@ -190,7 +190,7 @@ const latestActivities = ref([
 .container {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 0.1fr 0.5fr auto 2fr;
+  grid-template-rows: 0.1fr 0.5fr auto 1fr;
   grid-template-areas: "nav" "sidemenu" "main" "aside";
   grid-gap: 0px;
 }

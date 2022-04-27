@@ -37,6 +37,7 @@ const props = defineProps({
 const chartOptionsDefaults = ref({
   showDatapoints: true,
   responsive: true,
+  maintainAspectRatio: true,
   aspectRatio: 1.5,
   barThickness: 24,
   layout: {

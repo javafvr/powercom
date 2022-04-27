@@ -1,6 +1,6 @@
 ﻿<script setup>
 /* eslint-disable vue/no-v-for-template-key-on-child */
-import { defineProps, ref, onMounted } from "vue";
+import { defineProps, ref, onMounted, computed, onUnmounted } from "vue";
 import { SmartWidgetGrid } from "vue-smart-widget";
 import { WidgetCard } from "@/components/WidgetCard";
 import { Button } from "@/components/Button";
@@ -23,6 +23,30 @@ const props = defineProps({
 const isEditMode = ref(false);
 const isShowAddNew = ref(false);
 const items = ref([]);
+const rowHeight = ref(38);
+const filteredData = ref([]);
+const windowWidth =ref(window.innerWidth);
+
+
+// watch(
+//   () => windowWidth,
+//   (newValue) => {
+//     console.log(newValue)
+//   }
+// );
+
+// const type = computed(() => {
+//   if (windowWidth.value < 550) return 'xs'
+//   if (windowWidth.value >= 550 && windowWidth.value < 1200) return 'md'
+//   if (windowWidth.value >= 1200) return 'lg'
+//   return null; // This is an unreachable line, simply to keep eslint happy.
+// })
+
+// const width = computed(() => windowWidth.value)
+
+const rowHeightComputed = computed(() => {
+  return rowHeight.value;
+});
 
 const onClickEditHandler = () => {
   isEditMode.value = !isEditMode.value;
@@ -37,18 +61,18 @@ const onWidgetCloseHandler = (item) => {
 const addWidgetHandler = (item) => {
   items.value.push(item);
 };
-
-const filteredData = ref([]);
+const onWidthChange = () => {
+  windowWidth.value = window. innerWidth
+  console.log(windowWidth.value)
+}
 
 // lifecycle hooks
 onMounted(() => {
   items.value = props.layout;
+  window.addEventListener('resize', onWidthChange)
 });
+onUnmounted(() => window.removeEventListener('resize', onWidthChange))
 
-// const onClickContextHandler = () => {
-//   isEditMode.value = !isEditMode.value;
-//   console.log('refs', ContextMenu)
-// };
 </script>
 
 <template>
@@ -118,7 +142,7 @@ onMounted(() => {
         resizable
         :margin="[24, 24]"
         :cols="{ lg: 10, md: 10, sm: 8, xs: 4, xxs: 2 }"
-        :rowHeight="41"
+        :rowHeight="rowHeightComputed"
       >
         <template v-for="item in items" v-slot:[item.i]>
           <WidgetCard

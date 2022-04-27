@@ -95,8 +95,8 @@ const chartOptionsDefaults = {
   aspectRatio: false,
   layout: {
     padding: {
-      left: 40,
-      right: 40,
+      left: 50,
+      right: 50,
       bottom: 30,
       top: 30,
     },

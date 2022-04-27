@@ -37,12 +37,7 @@ const props = defineProps({
       <div :class="[$style.title, $style.mbXSSS]">
         <span>{{ props.title }}</span>
         <div :class="$style.controls">
-          <Button
-            title="Connection type"
-            color="purple"
-            size="S"
-            bold
-          >
+          <Button title="Connection type" color="purple" size="S" bold>
             <template #prepend>
               <IconImportExport />
             </template>
@@ -81,7 +76,10 @@ const props = defineProps({
         </div>
       </div>
     </div>
-    <div v-if="chart" :class="$style.chart">
+    <div
+      v-if="chart"
+      :class="[$style.chart, { [$style.pie]: chart.type === 'pie' }]"
+    >
       <ChartBar
         v-if="chart.type == 'bar'"
         height="102px"

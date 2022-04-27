@@ -8,10 +8,7 @@ $card-padding: 16px;
   font-weight: 700;
   line-height: 24px;
   letter-spacing: 0px;
-  margin-bottom: 8px;
-  & + .mainContent {
-    margin-bottom: 4px;
-  }
+  margin-bottom: 4px;
 }
 
 .contentWrapper {
@@ -26,7 +23,7 @@ $card-padding: 16px;
 .mainContent {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   width: 100%;
 }
 
@@ -62,6 +59,13 @@ $card-padding: 16px;
   font-size: 24px;
   line-height: 24px;
   fill: $color-white;
+}
+
+.mainIndicatorDescription {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: rgba($color-white, 0.8);
 }
 
 .secondIndicator {
@@ -104,6 +108,29 @@ $card-padding: 16px;
     font-size: 10px;
   }
 
+}
+
+.chart.bar {
+  width: 190px;
+  margin: 0 auto;
+}
+
+@include respond-to(sm) {
+  .chart.bar {
+    width: 136px;
+  }
+}
+
+.chart.gauge {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto;
+}
+
+@include respond-to(sm) {
+  .chart.gauge {
+    width: 136px;
+  }
 }
 
 // Colors

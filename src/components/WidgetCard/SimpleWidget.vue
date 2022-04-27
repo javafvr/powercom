@@ -1,9 +1,6 @@
 ﻿<script setup>
 import { defineProps } from "vue";
-import {
-  ChartBar,
-  ChartRadialGauge,
-} from "@/components/ChartComponent";
+import { ChartBar, ChartRadialGauge } from "@/components/ChartComponent";
 
 const props = defineProps({
   title: {
@@ -28,13 +25,18 @@ const props = defineProps({
 <template>
   <div :class="$style.contentWrapper">
     <div :class="$style.header">
-      <div :class="[$style.title, $style.mbXSSS]">{{ props.title }}</div>
-      <div :class="[$style.mainContent, $style.mbXS]">
+      <div :class="[$style.title]">{{ props.title }}</div>
+      <div :class="[$style.mainContent]">
         <div
           v-if="props.indicators"
-          :class="[$style.mainContentItem, $style.left, $style.mainIndicator]"
+          :class="[$style.mainContentItem, $style.left]"
         >
-          {{ props.indicators.mainIndicator.title }}
+          <span :class="[$style.mainIndicator]">{{
+            props.indicators.mainIndicator.title
+          }}</span>
+          <span :class="[$style.mainIndicatorDescription]">{{
+            props.indicators.mainIndicator.description
+          }}</span>
         </div>
         <div
           v-if="props.indicators"
@@ -54,24 +56,32 @@ const props = defineProps({
           :class="[$style.mainContentItem, $style.left]"
         >
           <span :class="[$style.secondIndicator]">
-            <div :class="$style.selector">{{props.selector.options[0].title}} <IconArrowDropDown /></div>
+            <div :class="$style.selector">
+              {{ props.selector.options[0].title }} <IconArrowDropDown />
+            </div>
           </span>
         </div>
       </div>
     </div>
-    <div v-if="chart" :class="$style.chart">
+    <div
+      v-if="chart"
+      :class="[
+        $style.chart,
+        $style.chart,
+        { [$style.bar]: chart.type === 'bar' },
+        { [$style.gauge]: chart.type === 'gauge' },
+      ]"
+    >
       <ChartBar
         v-if="chart.type == 'bar'"
-        height="102px"
         width="100%"
         chartId="chart-bar"
         :chartData="chart.data"
       />
       <ChartRadialGauge
         v-if="chart.type == 'gauge'"
-        height="96"
-        width="96"
         chartId="radial-gauge"
+        width="100%"
         :chartData="chart.data"
       />
     </div>

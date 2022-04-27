@@ -69,6 +69,17 @@ $card-padding: 16px;
   right: 16px;
 }
 
+.chart.pie {
+  width: 100%;
+  margin: 0 auto;
+}
+
+@include respond-to(sm) {
+  .chart.pie {
+    width: 80%;
+  }
+}
+
 // Colors
 .gray {
   .title {

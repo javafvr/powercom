@@ -7,7 +7,13 @@
   align-items: flex-start;
   padding: 32px 8px;
   background-color: $color-gray-3;
-  width: 258px;
-  border-radius: 16px;
+  width: 100%;
+  border-radius: 0px;
 }
 
+@include respond-to(sm) {
+  .latestActivities {
+    width: 258px;
+    border-radius: 16px;
+  }
+}
