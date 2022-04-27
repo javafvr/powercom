@@ -36,6 +36,17 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  responsive: {
+    type: Boolean,
+    default: false,
+  },
+  to: {
+    type: String
+  },
+  link: {
+    type: Boolean,
+    default: false
+  }
 });
 
 const classes = computed(() => ({
@@ -45,21 +56,22 @@ const classes = computed(() => ({
   [$style.solid]: props.solid,
   [$style.shadow]: props.shadow,
   [$style.bold]: props.bold,
+  [$style.responsive]: props.responsive,
 }));
 </script>
 
 <template>
-  <div :class="[$style.button, classes]">
-    <div v-if="$slots['prepend']" :class="$style.prepend">
-      <slot name="prepend" />
+    <div :class="[$style.button, classes]">
+      <div v-if="$slots['prepend']" :class="$style.prepend">
+        <slot name="prepend" />
+      </div>
+      <span v-if="props.title">
+        {{ props.title }}
+      </span>
+      <div v-if="$slots['append']" :class="$style.append">
+        <slot name="append" />
+      </div>
     </div>
-    <span v-if="props.title">
-      {{ props.title }}
-    </span>
-    <div v-if="$slots['append']" :class="$style.append">
-      <slot name="append" />
-    </div>
-  </div>
 </template>
 
 <style lang="scss" module>

@@ -6,6 +6,8 @@ import { WidgetCard } from "@/components/WidgetCard";
 import { Button } from "@/components/Button";
 import { Modal } from "@/components/Modal";
 import { ContextMenu } from "@/components/ContextMenu";
+import TreeData from "@/components/TreeData";
+import AdvancedFilter from "@/components/AdvancedFilter";
 import Search from "@/components/Search";
 import {
   IconModeEdit,
@@ -25,8 +27,7 @@ const isShowAddNew = ref(false);
 const items = ref([]);
 const rowHeight = ref(38);
 const filteredData = ref([]);
-const windowWidth =ref(window.innerWidth);
-
+const windowWidth = ref(window.innerWidth);
 
 // watch(
 //   () => windowWidth,
@@ -50,7 +51,7 @@ const rowHeightComputed = computed(() => {
 
 const onClickEditHandler = () => {
   isEditMode.value = !isEditMode.value;
-  console.log('refs', ContextMenu)
+  console.log("refs", ContextMenu);
 };
 
 const onWidgetCloseHandler = (item) => {
@@ -62,17 +63,104 @@ const addWidgetHandler = (item) => {
   items.value.push(item);
 };
 const onWidthChange = () => {
-  windowWidth.value = window. innerWidth
-  console.log(windowWidth.value)
-}
+  windowWidth.value = window.innerWidth;
+  console.log(windowWidth.value);
+};
 
 // lifecycle hooks
 onMounted(() => {
   items.value = props.layout;
-  window.addEventListener('resize', onWidthChange)
+  window.addEventListener("resize", onWidthChange);
 });
-onUnmounted(() => window.removeEventListener('resize', onWidthChange))
+onUnmounted(() => window.removeEventListener("resize", onWidthChange));
 
+
+
+
+const treeData = ref([
+  {
+    name: "Israel",
+    children: [
+      {
+        name: "DEMO",
+        children: [{ name: "Fedor_Demo" }],
+      },
+    ],
+  },
+  {
+    name: "DEMO",
+    children: [
+      {
+        name: "DEMO",
+        children: [{ name: "Fedor_Demo" }],
+      },
+    ],
+  },
+  {
+    name: "DEMO",
+    children: [
+      {
+        name: "DEMO",
+        children: [{ name: "Fedor_Demo" }],
+      },
+    ],
+  },
+  {
+    name: "DEMO",
+    children: [
+      {
+        name: "DEMO",
+        children: [{ name: "Fedor_Demo2", categories: [ "postpaid" ]}],
+      },
+    ],
+  },
+  {
+    name: "DEMO",
+    children: [
+      {
+        name: "DEMO1",
+        categories: [ "prepaid" ],
+        children: [{ name: "Fedor_Demo_payment" }],
+      },
+    ],
+  },
+]);
+const categories = ref([
+    {
+      id: "paymentType",
+      name: "Payment type",
+      inputType: "select",
+      options: [
+        {title: "Prepaid", value: "prepaid", selected: "checked"},
+        {title: "Postpaid", value: "postpaid", selected: "unchecked"}
+      ]
+    },
+    {
+      id: "rateType",
+      name: "Rate type",
+      inputType: "select",
+      options: [
+        {title: "Placeholder", value: "Placeholder", selected: "checked"},
+        {title: "Area", value: "Area", selected: "unchecked"}
+      ]
+    },
+    {
+      id: "connectionType",
+      name: "Connection type",
+      inputType: "select",
+      options: [
+        {title: "Wifi", value: "Wifi", selected: "checked"},
+        {title: "Lan", value: "Lan", selected: "unchecked"}
+      ]
+    },
+    {
+      id: "netMetering",
+      name: "Net metering",
+      inputType: "input",
+      value: "meter"
+    },
+]);
+const filteredTree = ref([]);
 </script>
 
 <template>
@@ -80,24 +168,38 @@ onUnmounted(() => window.removeEventListener('resize', onWidthChange))
     <div :class="$style.gridHeader">
       <div :class="$style.mbL">
         <h4 :class="[$style.title4, $style.mbXSS]">Recently Used</h4>
-        <Button title="Inventory" color="purple" size="M" outline></Button>
-        <Button title="Workorder" color="purple" size="M" outline></Button>
-        <Button title="Assets" color="purple" size="M" outline></Button>
-        <Button title="Commands" color="purple" size="M" outline></Button>
-        <Button
-          title="Command Results"
-          color="purple"
-          size="M"
-          outline
-        ></Button>
-        <Button title="Alerts/Vee" color="purple" size="M" outline></Button>
+        <div :class="$style.btnControlsWrapper">
+          <Button title="Inventory" color="purple" size="M" outline responsive></Button>
+          <Button title="Workorder" color="purple" size="M" outline responsive></Button>
+          <Button title="Assets" color="purple" size="M" outline responsive></Button>
+          <Button title="Commands" color="purple" size="M" outline responsive></Button>
+          <Button
+            title="Command Results"
+            color="purple"
+            size="M"
+            outline
+            responsive
+          ></Button>
+          <Button title="Alerts/Vee" color="purple" size="M" outline responsive></Button>
+        </div>
       </div>
       <div :class="[$style.mbXSS, $style.flex]">
-        <h4 :class="[$style.title4]">Current Area: <span @contextmenu.prevent="$refs.menu.open">Fedor_Demo</span></h4>
-        <ContextMenu ref="menu">
-          dcdfdfdsfds
-        </ContextMenu>
-        <IconArrowDropDown height="12" width="12" />
+        <h4 :class="[$style.title4]">
+          Current Area:
+          <span @contextmenu.prevent="$refs.menu.open">Fedor_Demo</span>
+        </h4>
+        <ContextMenu>
+         <template #activator>
+          <IconArrowDropDown height="12" width="12" />
+         </template>
+         <template #content>
+            <h4 :class="[$style.title4, $style.mbXS]">Areas</h4>
+            <div :class="[$style.mbXS]">
+              <AdvancedFilter v-model="filteredTree" :data="treeData" :categories="categories"/>
+            </div>
+            <TreeData :items="filteredTree" />
+         </template>
+         </ContextMenu>
       </div>
       <div :class="[$style.flex, $style.justifyBetween]">
         <Button title="View details" color="purple" size="M">

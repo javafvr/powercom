@@ -96,8 +96,6 @@ const props = defineProps({
       />
       <ChartPie
         v-if="chart.type == 'pie'"
-        height="96"
-        width="96"
         chartId="chart-pie"
         :chartData="chart.data"
       />

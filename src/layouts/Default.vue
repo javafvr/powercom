@@ -3,8 +3,8 @@ import TopPanel from "@/components/TopPanel";
 import { SidebarSlider } from "@/components/SidebarSlider";
 import MainContent from "@/components/MainContent";
 import TreeData from "@/components/TreeData";
-import LatestActivities from "@/components/LatestActivities";
 import AdvancedFilter from "@/components/AdvancedFilter";
+import LatestActivities from "@/components/LatestActivities";
 import { ref } from "vue";
 const menuItems = [
   { url: "/", title: "Components" },
@@ -26,6 +26,7 @@ const onCloseClickHandler = (event) => {
   console.log(event)
   isSidebarOpened.value = event;
 };
+
 const treeData = ref([
   {
     name: "Israel",
@@ -74,7 +75,6 @@ const treeData = ref([
     ],
   },
 ]);
-
 const categories = ref([
     {
       id: "paymentType",
@@ -110,8 +110,8 @@ const categories = ref([
       value: "meter"
     },
 ]);
-
 const filteredTree = ref([]);
+
 const latestActivities = ref([
   {
     title: "Commands",

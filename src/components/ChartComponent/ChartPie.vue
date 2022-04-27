@@ -87,18 +87,18 @@ ChartJS.register(pieOutlineLabels);
 const chartOptionsDefaults = {
   type: "Pie",
   cutout: 0,
-  rotation: -55,
+  rotation: -40,
   borderJoinStyle: "round",
   borderWidth: false,
   responsible: true,
-  maintainAspectRatio: false,
-  aspectRatio: false,
+  maintainAspectRatio: true,
+  aspectRatio: 2.5,
   layout: {
     padding: {
-      left: 50,
-      right: 50,
-      bottom: 30,
-      top: 30,
+      left: 120,
+      right: 120,
+      bottom: 20,
+      top: 20,
     },
   },
   font: {
@@ -134,13 +134,8 @@ const chartOptionsDefaults = {
   <div>
     <Pie
       :chartId="props.chartId"
-      :height="253"
       :chart-data="props.chartData"
       :chart-options="chartOptionsDefaults"
-      :styles="{
-        'max-height': '220px',
-        margin: '0 auto',
-      }"
     />
   </div>
 </template>

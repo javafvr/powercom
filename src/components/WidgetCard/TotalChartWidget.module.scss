@@ -70,13 +70,15 @@ $card-padding: 16px;
 }
 
 .chart.pie {
-  width: 100%;
-  margin: 0 auto;
+  height: 50%;
+  margin: 0;
 }
 
 @include respond-to(sm) {
   .chart.pie {
-    width: 80%;
+    height: 165px;
+    width: 100%;
+    margin: 0 auto;
   }
 }
 

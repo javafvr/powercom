@@ -1,5 +1,6 @@
 ﻿<script setup>
 import { defineProps, ref, computed } from "vue";
+import ContextMenu from "@/components/ContextMenu";
 
 const props = defineProps(["items"]);
 const divider = "/";
@@ -30,10 +31,30 @@ const breadcrumbs = ref(genBreadcrumbs);
           { [$style.breadcrumbsItemLink]: item.link },
         ]"
       >
-        <span v-if="!item.link">{{ item.text }}</span>
+        <span v-if="!item.link" :class="$style.context">{{ item.text }}</span>
         <span v-else>
           <router-link :to="item.link">{{ item.text }}</router-link>
         </span>
+      </li>
+      <li :class="$style.contextIcon">
+        <ContextMenu>
+          <template #activator>
+            <IconArrowDropDown width="12" height="12" />
+          </template>
+          <template #content>
+            <ul :class="$style.contextList">
+              <li :class="$style.contextListItem">
+                <router-link :class="$style.breadcrumbsItemLink" to="/">Home</router-link>
+              </li>
+              <li :class="$style.contextListItem">
+                <router-link :class="$style.breadcrumbsItemLink" to="/">Home</router-link>
+              </li>
+              <li :class="$style.contextListItem">
+                <router-link :class="$style.breadcrumbsItemLink" to="/">Home</router-link>
+              </li>
+            </ul>
+          </template>
+        </ContextMenu>
       </li>
     </ul>
   </div>

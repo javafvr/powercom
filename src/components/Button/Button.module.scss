@@ -126,3 +126,11 @@
 .bold {
   font-weight: 700;
 }
+
+.outline.M.responsive {
+  padding: 10px 0 10px 0;
+  span {
+    white-space: nowrap;
+  }
+  // width: 100%;
+}
