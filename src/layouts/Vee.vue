@@ -155,7 +155,7 @@ const latestActivities = ref([
 .container {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.1fr 0.5fr 3.5fr 2fr;
+  grid-template-rows: 64px 0.5fr 3.5fr 2fr;
   grid-template-areas: "nav" "sidebar" "main" "aside";
   grid-gap: 0px;
 }
@@ -182,12 +182,17 @@ main {
   .container {
     height: 100vh;
     grid-template-columns: 0.95fr 2.9fr 0.75fr;
-    grid-template-rows: 0.2fr 1.5fr;
+    grid-template-rows: 64px 1.5fr;
     grid-template-areas: "nav nav nav" "sidebar main aside";
     grid-gap: 0 24px;
   }
   aside {
     padding: 80px 0 0 0;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .container {
+    grid-template-rows: 96px 1.5fr;
   }
 }
 </style>

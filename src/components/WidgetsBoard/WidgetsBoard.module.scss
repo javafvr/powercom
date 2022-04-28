@@ -13,81 +13,24 @@
   justify-content: flex-start;
   flex-wrap: wrap;
   gap: 19px;
-  // display: grid;
-  // grid-template-columns: repeat(3, 1fr);
-  // grid-template-rows: repeat(10, 206px);
-  // gap: 24px;
-  // min-height: 0;  /* NEW */
-  // min-width: 0;   /* NEW; needed for Firefox */
 }
 
+.totalWidget,
 .previewWidget,
 .listWidget,
 .simpleWidget {
-  // background-color: red;
-  height: 206px;
-  min-width: 186px;
+  height: 220px;
+  min-width: 100%;
 }
 
 .alertsWidget {
-  // background-color: red;
   height: 206px;
-  // width: 381px;
-  // grid-column: 1 / 3;
+  max-width: 381px;
 }
 
-// .previewGrid > .previewGridItem:nth-child(1) {
-//   grid-row: 1 / 4;
-//   grid-column: 1;
-// }
-
-// .previewGrid > .previewGridItem.column-2 {
-//   grid-column: 1/2;
-// }
-// .previewGrid > .previewGridItem.column-3 {
-//   grid-column: 1/3;
-// }
-// .previewGrid > .previewGridItem.column-4 {
-//   grid-column: 1/4;
-// }
-
-// .previewGrid > .previewGridItem.row-1 {
-//   grid-row: 1;
-// }
-// .previewGrid > .previewGridItem.row-2 {
-//   grid-row: 1/2;
-// }
-// .previewGrid > .previewGridItem.row-3 {
-//   grid-row: 1/3;
-// }
-// .previewGrid > .previewGridItem.row-4 {
-//   grid-row: 1/4;
-// }
-
-// .previewGrid > .previewGridItem:nth-child(2) {
-//   grid-row: 1 / 4;
-//   grid-column: 2;
-// }
-
-// .grid > .previewGridItem:nth-child(3) {
-//   grid-row: 1 / 4;
-//   grid-column: 3;
-// }
-
-// .grid > .previewGridItem:nth-child(4) {
-//   grid-row: 4 / 7;
-//   grid-column: 1;
-// }
-
-// .grid > .previewGridItem:nth-child(5) {
-//   grid-row: 3 / 7;
-//   grid-column: 2;
-// }
-
-// .grid > .previewGridItem:nth-child(6) {
-//    grid-row: 4 / 6;
-//   grid-column: 3;
-// }
+.totalChartWidget {
+  max-width: 100%;
+}
 
 .previewAddButton {
   display: none;
@@ -98,9 +41,7 @@
 }
 
 .previewGridItem {
-  // margin: 12px;
   position: relative;
-  // max-height: 206px;
   &:hover .previewAddButton,
   &:hover .previewGridItemOverlay {
     display: block;
@@ -133,10 +74,24 @@
     grid-template-columns: repeat(6, 0.5fr);
     grid-row: 1fr;
   }
-}
-
-@include respond-to(sm) {
   .gridWrapper {
     margin: 0 -24px 0 -24px;
+  }
+  .previewWidget,
+  .listWidget,
+  .simpleWidget {
+    height: 206px;
+    min-width: 186px;
+    max-width: 206px;
+  }
+
+  .alertsWidget {
+    height: 206px;
+    max-width: 381px;
+  }
+
+  .totalWidget {
+    height: 206px;
+    width: 186px;
   }
 }

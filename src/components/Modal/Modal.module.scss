@@ -25,10 +25,10 @@ $modal-padding: 40px 48px;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  width: 707px;
-  height: 624px;
+  width: 320px;
+  height: 450px;
   margin: 0px auto;
-  padding: $modal-padding;
+  padding: 15px 15px;
   background-color: $color-white;
   border-radius: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
@@ -76,4 +76,12 @@ $modal-padding: 40px 48px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+
+@include respond-to(sm) {
+  .container {
+    width: 707px;
+    height: 624px;
+    padding: $modal-padding;
+  }
 }

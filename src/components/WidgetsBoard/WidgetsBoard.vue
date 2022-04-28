@@ -21,6 +21,10 @@ const props = defineProps({
     type: Array,
     required: true,
   },
+  aviableWidgets: {
+    type: Array,
+    default: ()=> []
+  }
 });
 const isEditMode = ref(false);
 const isShowAddNew = ref(false);
@@ -51,7 +55,6 @@ const rowHeightComputed = computed(() => {
 
 const onClickEditHandler = () => {
   isEditMode.value = !isEditMode.value;
-  console.log("refs", ContextMenu);
 };
 
 const onWidgetCloseHandler = (item) => {
@@ -278,7 +281,7 @@ const filteredTree = ref([]);
           <div :class="[$style.mbS, $style.controls]">
             <Search
               v-model="filteredData"
-              :data="props.layout"
+              :data="props.aviableWidgets"
               searchField="title"
               outline
             >
