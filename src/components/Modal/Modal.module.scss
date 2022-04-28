@@ -25,8 +25,8 @@ $modal-padding: 40px 48px;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  width: 40%;
-  height: 600px;
+  width: 707px;
+  height: 624px;
   margin: 0px auto;
   padding: $modal-padding;
   background-color: $color-white;
@@ -37,7 +37,9 @@ $modal-padding: 40px 48px;
 }
 
 .body {
-  height: 80%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .defaultButton {
