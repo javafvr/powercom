@@ -279,8 +279,10 @@ const filteredTree = ref([]);
             <Search
               v-model="filteredData"
               :data="props.layout"
+              searchField="title"
               outline
-            ></Search>
+            >
+            </Search>
           </div>
         </template>
         <template #body>
@@ -288,7 +290,7 @@ const filteredTree = ref([]);
             <div
               v-for="item in filteredData"
               :key="item.id"
-              :class="$style.previewGridItem"
+              :class="[$style.previewGridItem, $style[item.template]]"
             >
               <WidgetCard
                 :key="item.id"

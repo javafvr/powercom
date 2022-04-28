@@ -5,17 +5,17 @@ import BaseInput from "@/components/BaseInput";
 
 const props = defineProps({
   data: Array,
+  searchField: {
+    type: String,
+    default: "name"
+  },
   filterKey: String,
   modelValue: Array,
   outline: Boolean,
   block: {
     type: Boolean,
     default: false,
-  },
-  searchProp: {
-    type: String,
-    default: "name",
-  },
+  }
 });
 
 let searchQuery = ref("");
@@ -142,12 +142,14 @@ const updateValue = (event) => {
   } else {
     list.value = props.data
   }
-  filteredData(props.data, "children", "name", searchQuery.value);
+  filteredData(props.data, "children", props.searchField, searchQuery.value);
   emit("update:modelValue", list.value);
 };
 
 onMounted(() => {
-  emit("update:modelValue", filteredData.value);
+  // console.log("search input data ", filteredData);
+  list.value = filteredData(props.data, "children", props.searchField, searchQuery.value);
+  emit("update:modelValue", list.value);
 });
 </script>
 
