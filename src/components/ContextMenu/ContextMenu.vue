@@ -6,24 +6,26 @@ const isOpenContextMenu = ref(false);
 const open = () => {
   isOpenContextMenu.value = true;
 };
-const close = () => {
+const close = (event) => {
+  console.log(event)
   isOpenContextMenu.value = false;
 };
 </script>
 
 <template>
   <div :class="$style.contextMenu">
-    <div @click="open" @blur="close" tabindex="0">
+    <div @click="open">
       <slot name="activator"></slot>
     </div>
-
     <div
       :class="[
         $style.content,
         { [$style.openedContextMenu]: isOpenContextMenu },
       ]"
+      @blur="close($event)"
+      tabindex="0"
     >
-      <slot name="content"></slot>
+      <slot name="content" tabindex="0"></slot>
     </div>
   </div>
 </template>

@@ -69,6 +69,13 @@
   grid-gap: 4px;
 }
 
+.contextMenuContent {
+  width: 310px;
+  height: 281px;
+  overflow-y: scroll;
+  
+}
+
 @include respond-to(sm) {
   .btnControlsWrapper {
     grid-template-columns: repeat(6, 0.5fr);

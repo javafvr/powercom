@@ -1,0 +1,62 @@
+﻿@import "../../assets/styles/index";
+
+.contentToggler {
+  display: flex;
+  color: rgba($color-gray-dark, 0.62);
+}
+
+.btn {
+  padding: 2px 14px;
+  border: 1px solid currentColor;
+  border-radius: 4px 4px 4px 4px;
+
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.4px;
+
+  color: currentColor;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  svg path {
+    fill: rgba($color-gray-dark, 0.62);
+  }
+}
+
+svg + .btnText {
+  margin-left: 10px;
+}
+
+.btnText {
+  color: rgba($color-gray-dark, 0.62);
+}
+
+.left {
+  border-radius: 4px 0px 0px 4px;
+}
+
+.right {
+  border-radius: 0px 4px 4px 0px;
+}
+
+.active.yellow {
+  background-color: $color-yellow;
+  color: $color-yellow;
+  svg path {
+    fill: $color-brown;
+  }
+}
+
+.active.blue {
+  background: $gradient-9;
+  color: $color-white;
+  border: none;
+  svg path {
+    fill: $color-white;
+  }
+  .btnText {
+    color: $color-white;
+  }
+}

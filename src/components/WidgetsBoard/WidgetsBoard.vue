@@ -196,11 +196,12 @@ const filteredTree = ref([]);
           <IconArrowDropDown height="12" width="12" />
          </template>
          <template #content>
-            <h4 :class="[$style.title4, $style.mbXS]">Areas</h4>
+           <div :class="$style.contextMenuContent">
             <div :class="[$style.mbXS]">
               <AdvancedFilter v-model="filteredTree" :data="treeData" :categories="categories"/>
             </div>
             <TreeData :items="filteredTree" />
+           </div>
          </template>
          </ContextMenu>
       </div>
@@ -246,7 +247,7 @@ const filteredTree = ref([]);
         responsive
         resizable
         :margin="[24, 24]"
-        :cols="{ lg: 10, md: 10, sm: 8, xs: 4, xxs: 2 }"
+        :cols="{ lg: 10, md: 8, sm: 8, xs: 4, xxs: 2 }"
         :rowHeight="rowHeightComputed"
       >
         <template v-for="item in items" v-slot:[item.i]>

@@ -1,108 +1,157 @@
 ﻿<script setup>
-// import Checkbox from "@/components/Checkbox"; 
-import AdvancedFilter from "@/components/AdvancedFilter"; 
-import TreeData from "@/components/TreeData"; 
 import { ref } from "vue";
+import ImageCard from "@/components/ImageCard";
+import ContentToggler from "@/components/ContentToggler";
 
-const treeData = ref([
+const cards = ref(
   {
-    name: "Israel",
-    children: [
+    electricity: [
       {
-        name: "DEMO",
-        children: [{ name: "Fedor_Demo" }],
+        title: "HES",
+        image: "./images/HES.png",
+        url: "/",
+      },
+      {
+        title: "MDM",
+        image: "./images/MDM.png",
+        url: "/",
+      },
+      {
+        title: "Workorder",
+        image: "./images/workorder.png",
+        url: "/",
+      },
+      {
+        title: "GIS",
+        image: "./images/GIS.png",
+        url: "/",
+      },
+      {
+        title: "Dashboard",
+        image: "./images/dashboard.png",
+        url: "/dashboard",
+      },
+      {
+        title: "Vending",
+        image: "./images/vending.png",
+        url: "/",
+      },
+      {
+        title: "Assets",
+        image: "./images/assets.png",
+      },
+      {
+        title: "User&Permissions",
+        image: "./images/users.png",
       },
     ],
-  },
-  {
-    name: "DEMO",
-    children: [
+    water: [
       {
-        name: "DEMO",
-        children: [{ name: "Fedor_Demo" }],
+        title: "HES",
+        image: "./images/HES_water.png",
+        url: "/",
+      },
+      {
+        title: "MDM",
+        image: "./images/MDM.png",
+        url: "/",
+      },
+      {
+        title: "Workorder",
+        image: "./images/workorder.png",
+        url: "/",
+      },
+      {
+        title: "GIS",
+        image: "./images/GIS_water.png",
+        url: "/",
+      },
+      {
+        title: "Dashboard",
+        image: "./images/dashboard.png",
+        url: "/dashboard",
+      },
+      {
+        title: "Vending",
+        image: "./images/vending.png",
+        url: "/",
+      },
+      {
+        title: "Assets",
+        image: "./images/assets_water.png",
+      },
+      {
+        title: "User&Permissions",
+        image: "./images/users.png",
       },
     ],
-  },
-  {
-    name: "DEMO",
-    children: [
-      {
-        name: "DEMO",
-        children: [{ name: "Fedor_Demo" }],
-      },
-    ],
-  },
-  {
-    name: "DEMO",
-    children: [
-      {
-        name: "DEMO",
-        children: [{ name: "Fedor_Demo2", categories: [ "postpaid" ]}],
-      },
-    ],
-  },
-  {
-    name: "DEMO",
-    children: [
-      {
-        name: "DEMO1",
-        categories: [ "prepaid" ],
-        children: [{ name: "Fedor_Demo_payment" }],
-      },
-    ],
-  },
+  }
+);
+
+const currentContent = ref("electricity");
+
+const contentType = ref([
+  { id: "electricity", title: "Electricity", icon: "IconLightningBoltCircle", color:"yellow"},
+  { id: "water", title: "Water", icon: "IconWaterCircle", color:"blue" },
 ]);
-
-const filteredTree = ref([]);
-const categories = ref([
-    {
-      id: "paymentType",
-      name: "Payment type",
-      inputType: "select",
-      options: [
-        {title: "Prepaid", value: "prepaid", selected: "checked"},
-        {title: "Postpaid", value: "postpaid", selected: "unchecked"}
-      ]
-    },
-    {
-      id: "rateType",
-      name: "Rate type",
-      inputType: "select",
-      options: [
-        {title: "Placeholder", value: "Placeholder", selected: "checked"},
-        {title: "Area", value: "Area", selected: "unchecked"}
-      ]
-    },
-    {
-      id: "connectionType",
-      name: "Connection type",
-      inputType: "select",
-      options: [
-        {title: "Wifi", value: "Wifi", selected: "checked"},
-        {title: "Lan", value: "Lan", selected: "unchecked"}
-      ]
-    },
-    {
-      id: "netMetering",
-      name: "Net metering",
-      inputType: "input",
-      value: "meter"
-    },
-]);
-
 </script>
 <template>
-    <div>
-      <div>Home</div>
-      <router-link to="/Dashboard">Dashboard</router-link>
-      <div>Areas</div>
-      <div :class="$style.mbXS">
-        <AdvancedFilter v-model="filteredTree" :data="treeData" :categories="categories"/>
-      </div>
-      <TreeData :items="filteredTree" />
+  <div class="page-content">
+    <div class="menu-cards">
+      <ContentToggler v-model="currentContent" :items="contentType" />
     </div>
+    <div class="container-cards">
+      <div v-for="(card, index) in cards[currentContent]" :key="index" class="card-item">
+        <ImageCard :title="card.title" :image="card.image" :url="card.url" />
+      </div>
+    </div>
+  </div>
 </template>
 
 <style lang="scss" module>
 @import "@/assets/styles/utils.module";
+</style>
+
+<style lang="scss" scoped>
+.container-cards {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+}
+
+.card-item {
+  cursor: pointer;
+  // max-height: 120px;
+}
+
+.menu-cards {
+  grid-area: menu;
+  // height: 32px;
+  padding: 32px 0 24px 0;
+}
+
+.page-content {
+  width: 100%;
+  margin: 0 auto;
+}
+@media only screen and (min-width: 576px) {
+  .page-content {
+    width: 1188px;
+  }
+  .container-cards {
+    justify-content: flex-start;
+    gap: 24px;
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 320px) {
+  .card-item {
+    cursor: pointer;
+    max-height: 320px;
+  }
+
+}
 </style>

@@ -12,14 +12,19 @@ import {
   IconImportExport,
   IconError,
   IconPlugOff,
-  IconCheck
+  IconCheck,
+  IconLightningBoltCircle,
+  IconWaterCircle,
 } from "../src/components/Icon";
 
-import { DefaultLayout, VeeLayout } from './layouts'
+import { DefaultLayout, VeeLayout, HomeLayout } from './layouts'
 
 createApp(App)
   .component('default-layout', DefaultLayout)
+  .component('home-layout', HomeLayout)
   .component('vee-layout', VeeLayout)
+  .component("IconLightningBoltCircle", IconLightningBoltCircle)
+  .component("IconWaterCircle", IconWaterCircle)
   .component("IconCommand", IconCommand)
   .component("IconDocument", IconDocument)
   .component("IconWorkflow", IconWorkflow)

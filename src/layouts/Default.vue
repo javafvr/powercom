@@ -222,7 +222,7 @@ main {
   .container {
     height: 100vh;
     grid-template-columns: auto 2fr 0.6fr;
-    grid-template-rows: 0.2fr 1.5fr 56px;
+    grid-template-rows: 64px 1.5fr 56px;
     grid-template-areas: "nav nav nav" "sidemenu main aside" "footer footer footer";
     grid-gap: 0 24px;
   }
@@ -242,6 +242,11 @@ main {
   }
   footer {
 
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .container {
+    grid-template-rows: 96px 1.5fr;
   }
 }
 </style>
