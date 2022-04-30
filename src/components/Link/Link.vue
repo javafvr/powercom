@@ -41,8 +41,8 @@ const props = defineProps({
     default: false,
   },
   to: {
-    type: String
-  }
+    type: String,
+  },
 });
 
 const classes = computed(() => ({
@@ -56,11 +56,19 @@ const classes = computed(() => ({
 </script>
 
 <template>
-    <div :class="[$style.link, classes]">
-      <router-link :to="props.to">
-        {{props.title}}
-      </router-link>
-    </div>
+  <div :class="[$style.link, classes]">
+    <router-link :to="props.to">
+      <div v-if="$slots['prepend']" :class="$style.prepend">
+        <slot name="prepend" />
+      </div>
+      <span v-if="props.title">
+        {{ props.title }}
+      </span>
+      <div v-if="$slots['append']" :class="$style.append">
+        <slot name="append" />
+      </div>
+    </router-link>
+  </div>
 </template>
 
 <style lang="scss" module>

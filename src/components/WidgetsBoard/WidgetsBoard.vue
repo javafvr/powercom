@@ -9,6 +9,7 @@ import { ContextMenu } from "@/components/ContextMenu";
 import TreeData from "@/components/TreeData";
 import AdvancedFilter from "@/components/AdvancedFilter";
 import Search from "@/components/Search";
+import Link from "@/components/Link";
 import {
   IconModeEdit,
   IconCheckCircle,
@@ -23,8 +24,8 @@ const props = defineProps({
   },
   aviableWidgets: {
     type: Array,
-    default: ()=> []
-  }
+    default: () => [],
+  },
 });
 const isEditMode = ref(false);
 const isShowAddNew = ref(false);
@@ -77,9 +78,6 @@ onMounted(() => {
 });
 onUnmounted(() => window.removeEventListener("resize", onWidthChange));
 
-
-
-
 const treeData = ref([
   {
     name: "Israel",
@@ -113,7 +111,7 @@ const treeData = ref([
     children: [
       {
         name: "DEMO",
-        children: [{ name: "Fedor_Demo2", categories: [ "postpaid" ]}],
+        children: [{ name: "Fedor_Demo2", categories: ["postpaid"] }],
       },
     ],
   },
@@ -122,46 +120,46 @@ const treeData = ref([
     children: [
       {
         name: "DEMO1",
-        categories: [ "prepaid" ],
+        categories: ["prepaid"],
         children: [{ name: "Fedor_Demo_payment" }],
       },
     ],
   },
 ]);
 const categories = ref([
-    {
-      id: "paymentType",
-      name: "Payment type",
-      inputType: "select",
-      options: [
-        {title: "Prepaid", value: "prepaid", selected: "checked"},
-        {title: "Postpaid", value: "postpaid", selected: "unchecked"}
-      ]
-    },
-    {
-      id: "rateType",
-      name: "Rate type",
-      inputType: "select",
-      options: [
-        {title: "Placeholder", value: "Placeholder", selected: "checked"},
-        {title: "Area", value: "Area", selected: "unchecked"}
-      ]
-    },
-    {
-      id: "connectionType",
-      name: "Connection type",
-      inputType: "select",
-      options: [
-        {title: "Wifi", value: "Wifi", selected: "checked"},
-        {title: "Lan", value: "Lan", selected: "unchecked"}
-      ]
-    },
-    {
-      id: "netMetering",
-      name: "Net metering",
-      inputType: "input",
-      value: "meter"
-    },
+  {
+    id: "paymentType",
+    name: "Payment type",
+    inputType: "select",
+    options: [
+      { title: "Prepaid", value: "prepaid", selected: "checked" },
+      { title: "Postpaid", value: "postpaid", selected: "unchecked" },
+    ],
+  },
+  {
+    id: "rateType",
+    name: "Rate type",
+    inputType: "select",
+    options: [
+      { title: "Placeholder", value: "Placeholder", selected: "checked" },
+      { title: "Area", value: "Area", selected: "unchecked" },
+    ],
+  },
+  {
+    id: "connectionType",
+    name: "Connection type",
+    inputType: "select",
+    options: [
+      { title: "Wifi", value: "Wifi", selected: "checked" },
+      { title: "Lan", value: "Lan", selected: "unchecked" },
+    ],
+  },
+  {
+    id: "netMetering",
+    name: "Net metering",
+    inputType: "input",
+    value: "meter",
+  },
 ]);
 const filteredTree = ref([]);
 </script>
@@ -172,10 +170,34 @@ const filteredTree = ref([]);
       <div :class="$style.mbL">
         <h4 :class="[$style.title4, $style.mbXSS]">Recently Used</h4>
         <div :class="$style.btnControlsWrapper">
-          <Button title="Inventory" color="purple" size="M" outline responsive></Button>
-          <Button title="Workorder" color="purple" size="M" outline responsive></Button>
-          <Button title="Assets" color="purple" size="M" outline responsive></Button>
-          <Button title="Commands" color="purple" size="M" outline responsive></Button>
+          <Button
+            title="Inventory"
+            color="purple"
+            size="M"
+            outline
+            responsive
+          ></Button>
+          <Button
+            title="Workorder"
+            color="purple"
+            size="M"
+            outline
+            responsive
+          ></Button>
+          <Button
+            title="Assets"
+            color="purple"
+            size="M"
+            outline
+            responsive
+          ></Button>
+          <Button
+            title="Commands"
+            color="purple"
+            size="M"
+            outline
+            responsive
+          ></Button>
           <Button
             title="Command Results"
             color="purple"
@@ -183,7 +205,13 @@ const filteredTree = ref([]);
             outline
             responsive
           ></Button>
-          <Button title="Alerts/Vee" color="purple" size="M" outline responsive></Button>
+          <Button
+            title="Alerts/Vee"
+            color="purple"
+            size="M"
+            outline
+            responsive
+          ></Button>
         </div>
       </div>
       <div :class="[$style.mbXSS, $style.flex]">
@@ -192,28 +220,32 @@ const filteredTree = ref([]);
           <span @contextmenu.prevent="$refs.menu.open">Fedor_Demo</span>
         </h4>
         <ContextMenu>
-         <template #activator>
-          <IconArrowDropDown height="12" width="12" />
-         </template>
-         <template #content>
-           <div :class="$style.contextMenuContent">
-            <div :class="[$style.mbXS]">
-              <AdvancedFilter v-model="filteredTree" :data="treeData" :categories="categories"/>
+          <template #activator>
+            <IconArrowDropDown height="12" width="12" />
+          </template>
+          <template #content>
+            <div :class="$style.contextMenuContent">
+              <div :class="[$style.mbXS]">
+                <AdvancedFilter
+                  v-model="filteredTree"
+                  :data="treeData"
+                  :categories="categories"
+                />
+              </div>
+              <TreeData :items="filteredTree" />
             </div>
-            <TreeData :items="filteredTree" />
-           </div>
-         </template>
-         </ContextMenu>
+          </template>
+        </ContextMenu>
       </div>
       <div :class="[$style.flex, $style.justifyBetween]">
-        <Button title="View details" color="purple" size="M">
+        <Link title="View details" color="purple" size="M" to="/">
           <template #prepend>
             <IconPageView />
           </template>
           <template #append>
             <IconChevronRight width="16" height="16" />
           </template>
-        </Button>
+        </Link>
         <Button
           :title="isEditMode ? 'Apply' : 'Edit'"
           :color="isEditMode ? 'green' : 'purple'"

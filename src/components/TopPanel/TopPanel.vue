@@ -12,7 +12,7 @@ const props = defineProps({
   user: Object,
   logoUrl: {
     type: String,
-    default: "./images/logo.svg"
+    default: "./images/logo.svg",
   },
   color: {
     type: String,
@@ -23,28 +23,34 @@ const props = defineProps({
   },
   hideLogo: {
     type: Boolean,
-    default: false
+    default: false,
   },
   hideDesktopMenu: {
     type: Boolean,
-    default: false
+    default: false,
   },
   hideMobileMenu: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 });
 
 const $style = useCssModule();
 const isOpenMobileMenu = ref(false);
+const isShowHidable = ref(false);
 const classes = computed(() => ({
   [$style.menuOpened]: isOpenMobileMenu.value,
+  [$style.showHidable]: isShowHidable.value,
 }));
 
-const onDetailClickHandler = () => {
-  
-}
+const isLastPoints = (index) => {
+  if (props.menuItems.length <= 3) return false;
+  return props.menuItems.length - 3 < index;
+};
 
+const onDetailClickHandler = (value) => {
+  isShowHidable.value = value
+};
 </script>
 <template>
   <div :class="[$style.panel, classes, $style[props.color]]">
@@ -52,9 +58,13 @@ const onDetailClickHandler = () => {
       <img :src="require(`${props.logoUrl}`)" alt="logo" />
     </div>
     <div v-if="$slots.customSearch" :class="[$style.group, $style.logo]">
-      <slot name="customSearch"/>
+      <slot name="customSearch" />
     </div>
-    <div v-if="!props.hideMobileMenu" :class="[$style.group, $style.burger]" @click="isOpenMobileMenu = !isOpenMobileMenu">
+    <div
+      v-if="!props.hideMobileMenu"
+      :class="[$style.group, $style.burger]"
+      @click="isOpenMobileMenu = !isOpenMobileMenu"
+    >
       <span></span>
       <span></span>
       <span></span>
@@ -66,26 +76,45 @@ const onDetailClickHandler = () => {
         :class="$style.menuItem"
       >
         <router-link :to="item.url" v-slot="{ isExactActive }">
-          <div :class="[$style.link, isExactActive && $style.active]" >{{ item.title }}</div>
+          <div :class="[$style.link, isExactActive && $style.active]">
+            {{ item.title }}
+          </div>
         </router-link>
       </li>
     </ul>
-    <ul v-if="!props.hideDesktopMenu" :class="[$style.group, $style.menuDesktop]">
+    <ul
+      v-if="!props.hideDesktopMenu"
+      :class="[$style.group, $style.menuDesktop]"
+    >
       <li
         v-for="(item, index) in props.menuItems"
         :key="index"
-        :class="$style.topPanelGroupItem"
+        :class="[
+          $style.topPanelGroupItem,
+          { [$style.hidablePoints]: isLastPoints(index) },
+        ]"
       >
         <router-link :to="item.url" v-slot="{ isExactActive }">
-          <div :class="[$style.link, isExactActive && $style.active]" >{{ item.title }}</div>
+          <div :class="[$style.link, isExactActive && $style.active]">
+            {{ item.title }}
+          </div>
         </router-link>
       </li>
-      <li :class="[$style.topPanelGroupItem, $style.detailBtn]" @click="onDetailClickHandler()">
-        <IconDetails />
+      <li
+        :class="[$style.topPanelGroupItem, $style.detailBtn]"
+                  tabindex="0"
+          @click="onDetailClickHandler(true)"
+          @blur="onDetailClickHandler(false)"
+      >
+        <IconDetails
+          v-if="!isShowHidable"
+        />
       </li>
     </ul>
     <div :class="[$style.group, $style.topPanelActions]">
-      <div v-if="!$slots.customSearch" :class="$style.topPanelGroupItem"><IconMagnify width="24" height="24" /></div>
+      <div v-if="!$slots.customSearch" :class="$style.topPanelGroupItem">
+        <IconMagnify width="24" height="24" />
+      </div>
       <div :class="$style.topPanelGroupItem"><IconNotifications /></div>
       <div :class="$style.topPanelGroupItem"><IconSettings /></div>
       <div :class="[$style.topPanelGroupItem, $style.topPanelAvatar]">

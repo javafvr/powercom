@@ -55,8 +55,8 @@ import Link from "@/components/Link";
             </template>
           </BaseInput>
         </div>
-        <div :class="$style.formItem">
-          <div :class="$style.link">
+        <div :class="[$style.formItem, $style.formLink]">
+          <div :class="$style.formLink">
             <Link
               title="Recover password"
               color="purple"
@@ -66,7 +66,7 @@ import Link from "@/components/Link";
             />
           </div>
         </div>
-        <div :class="$style.formItem">
+        <div :class="[$style.formItem, $style.formSubmit]">
           <Button title="Sign In" size="L" solid color="purple" responsive />
         </div>
       </div>

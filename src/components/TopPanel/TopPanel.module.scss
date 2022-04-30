@@ -221,6 +221,13 @@
   };
 }
 
+.hidablePoints {
+  display: none;
+}
+
+.showHidable .hidablePoints {
+  display: flex;
+}
 
 
 

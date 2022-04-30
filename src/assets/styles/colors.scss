@@ -10,12 +10,13 @@ $color-gray-dark-2: #6e6f82;
 $color-gray-dark-3: #a3a4a6;
 $color-gray-dark-4: #66676b;
 $color-purple: #6d6adb;
+$color-purple-light: #a7a6e9;
 $color-purple-dark: #5946b9;
+$color-purple-dark-2: #44428d;
+
 $color-green: #6baa75;
 $color-yellow: #ffe676;
 $color-brown: #756060;
-
-
 
 // Gradients
 $gradient-1: linear-gradient(153.06deg, #d3d3d3 -0.31%, #ff6b6b 99.69%);
@@ -26,5 +27,9 @@ $gradient-5: linear-gradient(153.06deg, #e01c34 -0.31%, #acabb0 99.69%);
 $gradient-6: linear-gradient(153.06deg, #ffc857 -0.31%, #c11d38 99.69%);
 $gradient-7: linear-gradient(153.06deg, #722ae6 -0.31%, #e4b5cb 99.69%);
 $gradient-8: linear-gradient(153.06deg, #6e45e1 -0.31%, #89d4cf 99.69%);
-$gradient-9: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1098F7, #1098F7);
-
+$gradient-9: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0) 100%
+  ),
+  linear-gradient(0deg, #1098f7, #1098f7);

@@ -66,6 +66,19 @@
   margin-top: 24px;
 }
 
+.formItem + .formLink {
+  margin-top: 32px;
+}
+
+.formLink {
+  width: 100%;
+  text-align: right;
+}
+
 .subtitle + .form {
   margin-top: 48px;
+}
+
+.formLink + .formSubmit {
+  margin-top: 96px;
 }

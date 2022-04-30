@@ -1,6 +1,7 @@
 ﻿<script setup>
 import { defineProps } from "vue";
 import { Button } from "@/components/Button";
+import { ContextMenu } from "@/components/ContextMenu";
 import {
   ChartBar,
   ChartRadialGauge,
@@ -37,11 +38,21 @@ const props = defineProps({
       <div :class="[$style.title, $style.mbXSSS]">
         <span>{{ props.title }}</span>
         <div :class="$style.controls">
-          <Button title="Connection type" color="purple" size="S" bold>
-            <template #prepend>
-              <IconImportExport />
+          <ContextMenu>
+            <template #activator>
+              <Button title="Connection type" color="purple" size="S" bold>
+                <template #prepend>
+                  <IconImportExport />
+                </template>
+              </Button>
             </template>
-          </Button>
+            <template #content>
+              <div :class="$style.contextMenuContent">
+                  Connection type
+                <TreeData :items="filteredTree" />
+              </div>
+            </template>
+          </ContextMenu>
         </div>
       </div>
       <div :class="[$style.mainContent, $style.mbXS]">

@@ -3,10 +3,22 @@
 .link {
   cursor: pointer;
   transition: all $main-transition;
-  a {text-decoration: none;}
+  a {
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: currentColor;
+    text-decoration: none;
+    .prepend + span {
+      margin-left: 8px;
+    }
+    span + .append {
+      margin-left: 4px;
+    }
+  }
 }
 
-.button svg path{
+.link svg path{
   fill: currentColor;
 }
 
@@ -15,107 +27,26 @@
   display: flex;
 }
 
-.button .prepend + span {
-  margin-left: 8px;
-}
-
-.button span + .append {
-  margin-left: 4px;
-}
-
-// Type
-.outline {
-  @extend .bold;
-  border: 2px solid currentColor;
-}
-
-.solid {
-  @extend .bold;
-  background-color: currentColor;
-  box-shadow: 0px 0px 1px rgba(12, 26, 75, 0.24), 0px 3px 8px -1px rgba(50, 50, 71, 0.05);
-}
-
 // Colors
-.purple a,
-.purple:visited a{
+.purple {
   color: $color-purple;
-}
-
-.green {
-  color: $color-green;
-  &.solid {
-    color: $color-white;
-    background-color: $color-green;
+  &:visited {
+    color: $color-purple;
   }
-  &.outline:hover {
-    color: $color-white;
-    background-color: $color-green;
-    border-color: $color-green;
+  &:hover {
+    color: $color-purple-light;
   }
-}
-
-.gray {
-  color: $color-gray;
-  &.solid {
-    color: $color-gray-dark;
-    background-color: $color-gray;
-    &:hover {
-      color: $color-white;
-      background-color: $color-black;
-    }
-  }
-  &.outline:hover {
-    color: $color-gray-dark;
-    background-color: $color-gray;
-    border-color: $color-gray;
+  &:active {
+    color: $color-purple-dark-2;
   }
 }
 
 // Size
-.XS {
-  font-size: 9px;
-  line-height: 12px;
-  padding: 8px;
-  border-radius: 8px;
-}
-
-.S {
-  font-size: 12px;
-  line-height: 14px;
-  padding: 8px;
-  border-radius: 8px;
-  letter-spacing: 0.4000000059604645px;
-  .prepend + span {
-    margin-left: 4px;
-  }
-}
-
 .M {
   font-size: 14px;
-  line-height: 16px;
-}
-
-.solid.M,
-.outline.M {
-  padding: 10px 34px;
-  border-radius: 16px;
-}
-
-.L {
-  font-size: 16px;
   line-height: 24px;
-  padding: 12px 32px;
-  border-radius: 8px;
 }
 
 .bold {
   font-weight: 700;
-}
-
-.outline.M.responsive {
-  padding: 10px 0 10px 0;
-  span {
-    white-space: nowrap;
-  }
-  // width: 100%;
 }
