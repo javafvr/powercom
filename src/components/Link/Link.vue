@@ -50,7 +50,6 @@ const classes = computed(() => ({
   [$style[props.size]]: props.size,
   [$style.outline]: props.outline,
   [$style.solid]: props.solid,
-  [$style.shadow]: props.shadow,
   [$style.bold]: props.bold,
   [$style.responsive]: props.responsive,
 }));

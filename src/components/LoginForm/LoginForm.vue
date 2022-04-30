@@ -62,6 +62,7 @@ import Link from "@/components/Link";
               color="purple"
               size="M"
               to="/forgot-password"
+              bold
             />
           </div>
         </div>
