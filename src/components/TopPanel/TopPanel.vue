@@ -41,6 +41,10 @@ const classes = computed(() => ({
   [$style.menuOpened]: isOpenMobileMenu.value,
 }));
 
+const onDetailClickHandler = () => {
+  
+}
+
 </script>
 <template>
   <div :class="[$style.panel, classes, $style[props.color]]">
@@ -76,7 +80,7 @@ const classes = computed(() => ({
           <div :class="[$style.link, isExactActive && $style.active]" >{{ item.title }}</div>
         </router-link>
       </li>
-      <li :class="$style.topPanelGroupItem">
+      <li :class="[$style.topPanelGroupItem, $style.detailBtn]" @click="onDetailClickHandler()">
         <IconDetails />
       </li>
     </ul>

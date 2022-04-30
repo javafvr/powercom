@@ -21,6 +21,8 @@ import IconPlugOff from "./IconPlugOff";
 import IconCheck from "./IconCheck";
 import IconLightningBoltCircle from "./IconLightningBoltCircle";
 import IconWaterCircle from "./IconWaterCircle";
+import IconOutlinedProtect from "./IconOutlinedProtect";
+import IconEnvelope from "./IconEnvelope";
 
 export {
   IconMagnify,
@@ -46,4 +48,6 @@ export {
   IconCheck,
   IconLightningBoltCircle,
   IconWaterCircle,
+  IconOutlinedProtect,
+  IconEnvelope
 };

@@ -15,14 +15,19 @@ import {
   IconCheck,
   IconLightningBoltCircle,
   IconWaterCircle,
+  IconOutlinedProtect,
+  IconEnvelope
 } from "../src/components/Icon";
 
-import { DefaultLayout, VeeLayout, HomeLayout } from './layouts'
+import { DefaultLayout, VeeLayout, HomeLayout, LoginLayout } from './layouts'
 
 createApp(App)
   .component('default-layout', DefaultLayout)
+  .component('login-layout', LoginLayout)
   .component('home-layout', HomeLayout)
   .component('vee-layout', VeeLayout)
+  .component("IconOutlinedProtect", IconOutlinedProtect)
+  .component("IconEnvelope", IconEnvelope)
   .component("IconLightningBoltCircle", IconLightningBoltCircle)
   .component("IconWaterCircle", IconWaterCircle)
   .component("IconCommand", IconCommand)

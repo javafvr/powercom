@@ -23,7 +23,6 @@ const currentUser = {
 };
 const isSidebarOpened = ref(true);
 const onCloseClickHandler = (event) => {
-  console.log(event)
   isSidebarOpened.value = event;
 };
 

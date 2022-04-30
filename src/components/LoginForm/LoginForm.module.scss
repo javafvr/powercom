@@ -1,0 +1,71 @@
+﻿@import "../../assets/styles/index";
+
+.loginForm {
+  position: absolute;
+  width: 480px;
+  height: 758px;
+  background: $color-gray;
+  border-radius: 16px;
+  padding: 48px 96px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.selector {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+  color: $color-gray-dark-4;
+  svg {
+    fill: $color-gray-dark-4;
+  }
+  .selectorText + svg {
+    margin-left: 8px;
+  }
+}
+
+.title {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 42px;
+  color: $color-black;
+}
+
+.subtitle {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-gray-dark-4;
+}
+
+.title + .subtitle {
+  margin-top: 24px;
+}
+
+.logo img {
+  width: 74px;
+  height: 74px;
+}
+
+.header + .content {
+  margin-top: 48px;
+}
+
+.form {
+}
+
+.formItem + .formItem {
+  margin-top: 24px;
+}
+
+.subtitle + .form {
+  margin-top: 48px;
+}
