@@ -14,7 +14,7 @@ export default {
   },
 };
 
-//👇 We create a “template” of how args map to rendering
+//👇 We create a template of how args map to rendering
 const Template = (args) => ({
   components: { LatestActivities },
   setup() {

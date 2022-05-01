@@ -1,8 +1,12 @@
-﻿<script setup></script>
+﻿<script setup>
+/* eslint-disable vue/multi-word-component-names */
+
+</script>
+
 <template>
   <div class="container">
     <video playsinline autoplay muted loop :poster="require('../../public/images/bg.png')">
-      <source src="https://cdn.videvo.ne1t/videvo_files/video/free/2019-07/small_watermarked/Raw_Vegan_Blueberry_Cake_Cut_Birthday_Cooking_preview.webm" type="video/webm">
+      <source src="https://cdn.videvo.net/videvo_files/video/free/2019-07/small_watermarked/Raw_Vegan_Blueberry_Cake_Cut_Birthday_Cooking_preview.webm" type="video/webm">
       Your browser does not support the video tag.
     </video>
     <main>
@@ -10,13 +14,16 @@
     </main>
   </div>
 </template>
+
 <style lang="scss" scoped>
 @import "@/assets/styles/index";
 .container {
-  position: relative;
-  // display: flex;
-  // justify-content: flex-start;
-  // align-items: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
 }
 
 video {
@@ -29,18 +36,22 @@ video {
 }
 
 main {
-  // position: absolute;
-  // min-width: 100%;
-  // min-height: 100%;
-  // top: 0;
-  // left: 0;
-  // display: flex;
-  // justify-content: flex-start;
-  // align-items: center;
+  margin: 0;
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 576px) {
+  .container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    justify-content: flex-start;
+    align-items: center;
+  }
 
+  main {
+    margin-left: 7%;
+  }
 }
 </style>
 <style lang="sass" module>

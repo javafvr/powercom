@@ -9,7 +9,7 @@ import { ContextMenu } from "@/components/ContextMenu";
 import TreeData from "@/components/TreeData";
 import AdvancedFilter from "@/components/AdvancedFilter";
 import Search from "@/components/Search";
-import Link from "@/components/Link";
+import LinkBtn from "@/components/Link";
 import {
   IconModeEdit,
   IconCheckCircle,
@@ -230,6 +230,7 @@ const filteredTree = ref([]);
                   v-model="filteredTree"
                   :data="treeData"
                   :categories="categories"
+                  defaultAdvanced
                 />
               </div>
               <TreeData :items="filteredTree" />
@@ -238,14 +239,14 @@ const filteredTree = ref([]);
         </ContextMenu>
       </div>
       <div :class="[$style.flex, $style.justifyBetween]">
-        <Link title="View details" color="purple" size="M" to="/">
+        <LinkBtn title="View details" color="purple" size="M" to="/">
           <template #prepend>
             <IconPageView />
           </template>
           <template #append>
             <IconChevronRight width="16" height="16" />
           </template>
-        </Link>
+        </LinkBtn>
         <Button
           :title="isEditMode ? 'Apply' : 'Edit'"
           :color="isEditMode ? 'green' : 'purple'"
@@ -279,7 +280,7 @@ const filteredTree = ref([]);
         responsive
         resizable
         :margin="[24, 24]"
-        :cols="{ lg: 10, md: 8, sm: 8, xs: 4, xxs: 2 }"
+        :cols="{ lg: 8, md: 8, sm: 8, xs: 4, xxs: 2 }"
         :rowHeight="rowHeightComputed"
       >
         <template v-for="item in items" v-slot:[item.i]>

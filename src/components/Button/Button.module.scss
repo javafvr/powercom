@@ -44,6 +44,12 @@
   &.solid {
     color: $color-white;
     background-color: $color-purple;
+    &:hover {
+      background-color: $color-purple-light;
+    }
+    &:active {
+      background-color: $color-purple-dark-2;
+    }
   }
   &.outline:hover {
     color: $color-white;
@@ -106,7 +112,6 @@
   line-height: 16px;
 }
 
-.solid.M,
 .outline.M {
   padding: 10px 34px;
   border-radius: 16px;
@@ -118,6 +123,14 @@
   padding: 12px 32px;
   border-radius: 8px;
 }
+.solid.M {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+  padding: 11px 32px;
+  border-radius: 8px;
+}
 
 .shadow {
   box-shadow: 0px 9px 28px 8px rgba(0, 0, 0, 0.05), 0px 6px 16px rgba(0, 0, 0, 0.08), 0px 3px 6px -4px rgba(0, 0, 0, 0.12);
@@ -127,10 +140,13 @@
   font-weight: 700;
 }
 
+.stretch {
+  width: 100%;
+}
+
 .outline.M.responsive {
   padding: 10px 0 10px 0;
   span {
     white-space: nowrap;
   }
-  // width: 100%;
 }

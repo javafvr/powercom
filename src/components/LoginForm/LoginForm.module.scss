@@ -1,12 +1,9 @@
 ﻿@import "../../assets/styles/index";
 
 .loginForm {
-  position: absolute;
-  width: 480px;
-  height: 758px;
   background: $color-gray;
   border-radius: 16px;
-  padding: 48px 96px;
+  padding: 24px 48px;
 }
 
 .header {
@@ -59,9 +56,6 @@
   margin-top: 48px;
 }
 
-.form {
-}
-
 .formItem + .formItem {
   margin-top: 24px;
 }
@@ -81,4 +75,13 @@
 
 .formLink + .formSubmit {
   margin-top: 96px;
+}
+
+@include respond-to(sm) {
+  .loginForm {
+    padding: 48px 96px 111px;
+  }
+  .form {
+    width: 288px;
+  }
 }

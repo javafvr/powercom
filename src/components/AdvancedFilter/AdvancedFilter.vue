@@ -18,6 +18,10 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
+  defaultAdvanced: {
+    type: Boolean,
+    default: false
+  }
 });
 
 let filteredTree = ref([]);
@@ -108,6 +112,7 @@ onBeforeMount(() => {
   ), {})
 })
 onMounted(() => {
+  isAdvancedFilter.value = props.defaultAdvanced
   filteredTree.value = props.data
   emit("update:modelValue", filteredTree.value);
 });

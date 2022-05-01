@@ -29,6 +29,13 @@ const props = defineProps({
       return ["XS", "S", "M", "L", "XL"].indexOf(value) !== -1;
     },
   },
+  type: {
+    type: String,
+    default: "text",
+    validator: function (value) {
+      return ["text", "email", "password"].indexOf(value) !== -1;
+    },
+  },
   outline: {
     type: Boolean,
     default: false,
@@ -41,7 +48,21 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  modelValue: String,
+  modelValue: {
+    type: String,
+    default: "",
+  },
+  label: String,
+  caption: String,
+});
+
+const placeholderSize = computed(() => {
+  return props.placeholder.length;
+});
+
+const isDirty = computed(() => {
+  if (props.modelValue === undefined) return false;
+  return props.modelValue.length;
 });
 
 const classes = computed(() => ({
@@ -49,11 +70,8 @@ const classes = computed(() => ({
   [$style[props.size]]: props.size,
   [$style.outline]: props.outline,
   [$style.round]: props.round,
+  [$style.dirty]: isDirty.value,
 }));
-
-const placeholderSize = computed(() => {
-  return props.placeholder.length;
-});
 
 const emit = defineEmits(["update:modelValue"]);
 
@@ -73,16 +91,19 @@ export default {
     <div v-if="$slots['prepend']" :class="$style.prepend">
       <slot name="prepend" />
     </div>
-    <input
-      :size="block ? placeholderSize : null"
-      :value="modelValue"
-      :class="$style.input"
-      v-bind="$attrs"
-      :disabled="props.disabled"
-      type="text"
-      @input="updateValue"
-      :placeholder="props.placeholder"
-    />
+    <div :class="$style.input">
+      <span :class="$style.label" v-if="props.label">{{ props.label }}</span>
+      <input
+        :size="block ? placeholderSize : null"
+        v-model="modelValue"
+        v-bind="$attrs"
+        :disabled="props.disabled"
+        @input="updateValue"
+        :placeholder="props.placeholder"
+        :type="props.type"
+      />
+      <span v-if="props.caption" :class="$style.caption">{{props.caption}}</span>
+    </div>
     <div v-if="$slots['append']" :class="$style.append">
       <slot name="append" />
     </div>

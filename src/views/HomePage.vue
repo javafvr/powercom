@@ -124,12 +124,10 @@ const contentType = ref([
 
 .card-item {
   cursor: pointer;
-  // max-height: 120px;
 }
 
 .menu-cards {
   grid-area: menu;
-  // height: 32px;
   padding: 32px 0 24px 0;
 }
 

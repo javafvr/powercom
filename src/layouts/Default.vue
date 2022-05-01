@@ -217,6 +217,10 @@ main {
   grid-area: main;
 }
 
+footer {
+  height: 80px;
+}
+
 @media only screen and (min-width: 576px) {
   .container {
     height: 100vh;
@@ -238,9 +242,6 @@ main {
   }
   main {
     padding: 0;
-  }
-  footer {
-
   }
 }
 @media only screen and (min-width: 1200px) {

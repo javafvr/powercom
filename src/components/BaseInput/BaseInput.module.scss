@@ -2,11 +2,14 @@
 
 .inputWrapper {
   display: inline-flex;
+  align-items: center;
   border-bottom: 1px solid $color-gray-2;
   width: 100%;
+  position: relative;
 }
 
-.input {
+.input,
+.input input {
   background-color: transparent;
   outline: none;
   border: none;
@@ -14,7 +17,35 @@
   padding: 0;
 }
 
-.button svg path{
+.input input:-webkit-autofill,
+.input input:-webkit-autofill:hover,
+.input input:-webkit-autofill:focus,
+.input input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px $color-gray inset !important;
+}
+
+.label {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-gray-dark-4;
+}
+
+.label + input {
+  margin-top: 4px;
+}
+
+.caption {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: currentColor;
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.button svg path {
   fill: currentColor;
 }
 
@@ -41,9 +72,9 @@
 // Colors
 .purple {
   color: $color-purple;
-  .input,
+  .input input,
   svg path,
-  .input::placeholder {
+  .input input::placeholder {
     color: $color-purple;
     fill: $color-purple;
   }
@@ -52,13 +83,27 @@
 .gray {
   color: $color-gray;
   border-color: rgba($color-gray-dark, 0.6);
-  .input,
+  .input input,
   svg path {
     color: $color-black;
     fill: $color-gray-dark;
   }
-  .input::placeholder {
-    color: rgba($color-gray-dark, 0.4);
+  .input input::placeholder {
+    color: $color-gray-dark-3;
+
+    // color: rgba($color-gray-dark, 0.4);
+  }
+}
+
+.dirty {
+  svg path {
+    fill: $color-purple;
+  }
+}
+
+.error {
+  .caption {
+    color: $color-red;
   }
 }
 
@@ -95,6 +140,31 @@
   border-radius: 12px;
 }
 
+.XL {
+  .input input {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+    &:-webkit-autofill::first-line,
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: 700;
+    }
+  }
+  .input input::placeholder {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  padding: 0 0 16px 0;
+  border-radius: 0;
+}
+
 .shadow {
-  box-shadow: 0px 9px 28px 8px rgba(0, 0, 0, 0.05), 0px 6px 16px rgba(0, 0, 0, 0.08), 0px 3px 6px -4px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 9px 28px 8px rgba(0, 0, 0, 0.05),
+    0px 6px 16px rgba(0, 0, 0, 0.08), 0px 3px 6px -4px rgba(0, 0, 0, 0.12);
 }

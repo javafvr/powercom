@@ -27,7 +27,7 @@ export default {
 
 const filteredData = []
 
-//👇 We create a “template” of how args map to rendering
+//👇 We create a template of how args map to rendering
 const Template = (args) => ({
   components: { Search },
   data: () => ({ filteredData }),
