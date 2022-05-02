@@ -4,9 +4,9 @@
   padding-top: 32px;
 }
 
-.gridWrapper {
-  // margin: 0 -24px 0 -24px;
-}
+// .gridWrapper {
+//   // margin: 0 -24px 0 -24px;
+// }
 
 .previewGrid {
   display: flex;
@@ -15,7 +15,6 @@
   gap: 19px;
 }
 
-.totalWidget,
 .previewWidget,
 .listWidget,
 .simpleWidget {
@@ -25,7 +24,6 @@
 
 .alertsWidget {
   height: 206px;
-  max-width: 381px;
 }
 
 .totalChartWidget {
@@ -89,16 +87,21 @@
   .simpleWidget {
     height: 206px;
     min-width: 186px;
-    max-width: 206px;
+    max-width: 186px;
   }
 
   .alertsWidget {
     height: 206px;
-    max-width: 381px;
+    width: 391px;
+
   }
 
   .totalWidget {
     height: 206px;
     width: 186px;
+  }
+
+  .totalChartWidget {
+    width: 391px;
   }
 }

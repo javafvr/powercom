@@ -3,9 +3,8 @@ import BaseInput from "@/components/BaseInput";
 import ContextMenu from "@/components/ContextMenu";
 import Button from "@/components/Button";
 import Link from "@/components/Link";
+import Dropdown from "@/components/Dropdown";
 import { ref } from "vue";
-
-const error = ref("error");
 
 // const props = defineProps({
 //   logoUrl: {
@@ -14,35 +13,37 @@ const error = ref("error");
 //   }
 // });
 
-const errors = ref([]);
-const name = ref("");
-const email = ref("");
-const movie = ref("");
+const errors = ref({login: "", password: ""});
+const login = ref("");
+const password = ref("");
+const language = ref({title: "English (USA)", value: "english"});
+const languageOptions = ref([{title: "English (USA)", value: "english"}, {title: "Espanol (ES)", value: "espanol"}]);
 
 const checkForm = (e) => {
-  errors.value = [];
+  errors.value = {login: "", password: ""};
 
-  if (!name) {
-    errors.value.push('Укажите имя.');
+  if (!password.value) {
+    errors.value.password = 'Enter password';
   }
-  if (!email) {
-    errors.push('Укажите электронную почту.');
-  } else if (!validEmail(email)) {
-    this.errors.push('Укажите корректный адрес электронной почты.');
+  if (!login.value) {
+    errors.value.login = 'Enter email.';
+  } else if (!validEmail(login.value)) {
+    errors.value.login = 'Enter correct email.';
   }
 
-  if (!errors.value.length) {
-    return true;
+  if (!errors.value.login.length || !errors.value.password.length) {
+    return false;
   }
 
   e.preventDefault();
 }
 
-
-const validEmail = (email) => {
-  var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(email);
+const validEmail = (login) => {
+  var re = /.+@.+\..+/i;
+  return re.test(login);
 }
+
+
 </script>
 
 <template>
@@ -51,32 +52,27 @@ const validEmail = (email) => {
       <div :class="$style.logo">
         <img :src="require('../../../public/images/logo.svg')" alt="logo" />
       </div>
-      <ContextMenu>
-        <template #activator>
-          <div :class="$style.selector">
-            <div :class="$style.selectorText">English (USA)</div>
-            <IconArrowDropDown height="16" width="16" />
-          </div>
-        </template>
-        <template #content>
-          <div :class="$style.contextMenuContent">
-            <div :class="[$style.mbXS]">English (usa)</div>
-          </div>
-        </template>
-      </ContextMenu>
+      <Dropdown :options="languageOptions" v-model="language"/>
     </div>
     <div :class="$style.content">
       <div :class="$style.title">Sign In</div>
       <div :class="$style.subtitle">Enter your details to proceed further</div>
-      <form :class="$style.form">
+      <form
+        action="https://vuejs.org/"
+        method="post"
+        novalidate="true"
+        :class="$style.form"
+      >
         <div :class="$style.formItem">
           <BaseInput
-            label="Email"
+            label="login"
+            v-model="login"
             type="email"
             size="XL"
             color="gray"
             placeholder="Start typing…"
-            :caption="error"
+            :caption="errors.login"
+            :error="Boolean(errors.login)"
           >
             <template #append>
               <IconEnvelope />
@@ -85,11 +81,13 @@ const validEmail = (email) => {
         </div>
         <div :class="$style.formItem">
           <BaseInput
+            v-model="password"
             label="Password"
             type="password"
             size="XL"
             placeholder="Start typing…"
-            :caption="error"
+            :caption="errors.password"
+            :error="Boolean(errors.password)"
           >
             <template #append>
               <IconOutlinedProtect />
@@ -108,7 +106,7 @@ const validEmail = (email) => {
           </div>
         </div>
         <div :class="[$style.formItem, $style.formSubmit]">
-          <Button type="submit" title="Sign In" size="M" solid color="purple" stretch />
+          <Button @click="checkForm" type="submit" title="Sign In" size="M" solid color="purple" stretch autocomplete/>
         </div>
       </form>
     </div>

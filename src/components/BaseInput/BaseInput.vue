@@ -54,6 +54,10 @@ const props = defineProps({
   },
   label: String,
   caption: String,
+  error: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const placeholderSize = computed(() => {
@@ -71,6 +75,7 @@ const classes = computed(() => ({
   [$style.outline]: props.outline,
   [$style.round]: props.round,
   [$style.dirty]: isDirty.value,
+  [$style.error]: props.error,
 }));
 
 const emit = defineEmits(["update:modelValue"]);
@@ -95,14 +100,15 @@ export default {
       <span :class="$style.label" v-if="props.label">{{ props.label }}</span>
       <input
         :size="block ? placeholderSize : null"
-        v-model="modelValue"
         v-bind="$attrs"
         :disabled="props.disabled"
         @input="updateValue"
         :placeholder="props.placeholder"
         :type="props.type"
       />
-      <span v-if="props.caption" :class="$style.caption">{{props.caption}}</span>
+      <span v-if="props.caption" :class="$style.caption">{{
+        props.caption
+      }}</span>
     </div>
     <div v-if="$slots['append']" :class="$style.append">
       <slot name="append" />

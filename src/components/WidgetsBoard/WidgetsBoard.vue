@@ -219,7 +219,7 @@ const filteredTree = ref([]);
           Current Area:
           <span @contextmenu.prevent="$refs.menu.open">Fedor_Demo</span>
         </h4>
-        <ContextMenu>
+        <ContextMenu :closeOnClick="false">
           <template #activator>
             <IconArrowDropDown height="12" width="12" />
           </template>

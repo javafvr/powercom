@@ -1,6 +1,13 @@
 ﻿<script setup>
-import { ref } from "vue";
+import { ref, defineProps } from "vue";
 const isOpenContextMenu = ref(false);
+
+const props = defineProps({
+  closeOnClick: {
+    type: Boolean,
+    default: true
+  },
+});
 
 //Methods
 const open = () => {
@@ -23,9 +30,10 @@ const close = (event) => {
         { [$style.openedContextMenu]: isOpenContextMenu },
       ]"
       @blur="close($event)"
+      @click="props.closeOnClick ? close($event) : false"
       tabindex="0"
     >
-      <slot name="content" tabindex="0"></slot>
+      <slot name="content" tabindex="0" ></slot>
     </div>
   </div>
 </template>
