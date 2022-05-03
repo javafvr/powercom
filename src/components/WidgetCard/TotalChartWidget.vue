@@ -49,7 +49,6 @@ const props = defineProps({
             <template #content>
               <div :class="$style.contextMenuContent">
                   Connection type
-                <TreeData :items="filteredTree" />
               </div>
             </template>
           </ContextMenu>

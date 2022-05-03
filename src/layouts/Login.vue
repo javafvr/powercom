@@ -1,12 +1,20 @@
 ﻿<script setup>
 /* eslint-disable vue/multi-word-component-names */
-
 </script>
 
 <template>
   <div class="container">
-    <video playsinline autoplay muted loop :poster="require('../../public/images/bg.png')">
-      <source src="https://cdn.videvo.net/videvo_files/video/free/2019-07/small_watermarked/Raw_Vegan_Blueberry_Cake_Cut_Birthday_Cooking_preview.webm" type="video/webm">
+    <video
+      playsinline
+      autoplay
+      muted
+      loop
+      :poster="require('../../public/images/bg.png')"
+    >
+      <source
+        src="https://cdn.videvo.net/videvo_files/video/free/2019-07/small_watermarked/Raw_Vegan_Blueberry_Cake_Cut_Birthday_Cooking_preview.webm"
+        type="video/webm"
+      />
       Your browser does not support the video tag.
     </video>
     <main>
@@ -16,14 +24,13 @@
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/styles/index";
 .container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 
 video {
@@ -53,7 +60,4 @@ main {
     margin-left: 7%;
   }
 }
-</style>
-<style lang="sass" module>
-@import "@/assets/styles/utils.module"
 </style>

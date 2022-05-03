@@ -1,5 +1,5 @@
 ﻿<script setup>
-import { defineProps, useCssModule, computed, ref, defineEmits, onMounted } from "vue";
+import { defineProps, useCssModule, ref, defineEmits, onMounted } from "vue";
 import ContextMenu from "@/components/ContextMenu";
 
 const $style = useCssModule();
@@ -12,18 +12,6 @@ const props = defineProps({
 });
 
 const state = ref({});
-
-const isChecked = computed(() => {
-  return state.value === "checked" ? true : false;
-});
-
-const isIndeterminate = computed(() => {
-  return state.value === "indeterminate" ? true : false;
-});
-
-const classes = computed(() => ({
-  [$style.checked]: isChecked.value,
-}));
 
 const emit = defineEmits(["update:modelValue"]);
 

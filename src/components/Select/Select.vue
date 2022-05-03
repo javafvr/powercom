@@ -118,6 +118,6 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="sass" module>
+<style lang="scss" module>
 @import "Select.module"
 </style>

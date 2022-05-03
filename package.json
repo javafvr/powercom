@@ -10,6 +10,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "chart.js": "^3.7.1",
     "chartjs-chart-radial-gauge": "^1.1.0",
     "chartjs-plugin-datalabels": "^2.0.0",
@@ -37,6 +38,7 @@
     "css-loader": "^6.7.1",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
+    "firebase": "^9.7.0",
     "sass": "^1.50.0",
     "sass-loader": "^12.6.0",
     "storybook": "^6.4.22",
@@ -56,9 +58,12 @@
       "parser": "@babel/eslint-parser"
     },
     "rules": {
-      "vue/multi-word-component-names": ["warning", {
-        "ignores": []
-      }]
+      "vue/multi-word-component-names": [
+        1,
+        {
+          "ignores": []
+        }
+      ]
     }
   },
   "browserslist": [

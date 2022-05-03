@@ -116,6 +116,6 @@ export default {
   </div>
 </template>
 
-<style lang="sass" module>
+<style lang="scss" module>
 @import "BaseInput.module"
 </style>

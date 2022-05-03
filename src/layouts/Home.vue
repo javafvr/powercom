@@ -37,7 +37,6 @@ const currentUser = {
   </div>
 </template>
 <style lang="scss" scoped>
-@import "@/assets/styles/index";
 .container {
   display: grid;
   grid-template-columns: auto;
@@ -99,7 +98,4 @@ main {
     grid-template-rows: 96px 1.5fr;
   }
 }
-</style>
-<style lang="sass" module>
-@import "@/assets/styles/utils.module"
 </style>

@@ -1,4 +1,5 @@
 ﻿import { createRouter, createWebHistory } from "vue-router";
+import { auth } from "@/firebase";
 import HomePage from "@/views/HomePage.vue";
 import LoginPage from "@/views/LoginPage.vue";
 import DashboardPage from "@/views/DashboardPage.vue";
@@ -12,6 +13,7 @@ const router = createRouter({
       path: "/",
       component: HomePage,
       meta: {
+        requiresAuth: true,
         layout: 'home-layout',
         breadcrumb: [
           {
@@ -31,6 +33,7 @@ const router = createRouter({
       path: "/dashboard",
       component: DashboardPage,
       meta: {
+        requiresAuth: true,
         layout: 'default-layout',
         breadcrumb: [
           {
@@ -47,6 +50,24 @@ const router = createRouter({
       path: "/vee",
       component: VeePage,
       meta: {
+        requiresAuth: true,
+        layout: 'vee-layout',
+        breadcrumb: [
+          {
+            text: 'Home',
+            link: '/'
+          },
+          {
+            text: 'vee',
+          }
+        ]
+      }
+    },
+    {
+      path: "/forgot-password",
+      component: VeePage,
+      meta: {
+        requiresAuth: true,
         layout: 'vee-layout',
         breadcrumb: [
           {
@@ -61,4 +82,18 @@ const router = createRouter({
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.path === '/login' && auth.currentUser) {
+    next('/');
+    return;
+  }
+
+  if (to.matched.some(record => record.meta.requiresAuth) && !auth.currentUser) {
+    next("/login");
+    return;
+  }
+  next();
+})
+
 export default router;

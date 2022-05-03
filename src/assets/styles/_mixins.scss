@@ -1,13 +1,4 @@
-﻿// @mixin md($breakpoint) {
-//   @each $breakpoints, $size in $media {
-//     @if $breakpoint==$breakpoints {
-//       @media screen and (min-width: $size) {
-//         @content;
-//       }
-//     }
-//   }
-// }
-
+﻿
 @mixin respond-to($breakpoint) {
   // If the key exists in the map
   @if map-has-key($breakpoints, $breakpoint) {

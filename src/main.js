@@ -1,7 +1,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
-
+import store from "./store";
+import { DefaultLayout, VeeLayout, HomeLayout, LoginLayout } from "./layouts";
 import {
   IconCommand,
   IconDocument,
@@ -16,16 +17,14 @@ import {
   IconLightningBoltCircle,
   IconWaterCircle,
   IconOutlinedProtect,
-  IconEnvelope
+  IconEnvelope,
 } from "../src/components/Icon";
 
-import { DefaultLayout, VeeLayout, HomeLayout, LoginLayout } from './layouts'
-
 createApp(App)
-  .component('default-layout', DefaultLayout)
-  .component('login-layout', LoginLayout)
-  .component('home-layout', HomeLayout)
-  .component('vee-layout', VeeLayout)
+  .component("default-layout", DefaultLayout)
+  .component("login-layout", LoginLayout)
+  .component("home-layout", HomeLayout)
+  .component("vee-layout", VeeLayout)
   .component("IconOutlinedProtect", IconOutlinedProtect)
   .component("IconEnvelope", IconEnvelope)
   .component("IconLightningBoltCircle", IconLightningBoltCircle)
@@ -41,4 +40,5 @@ createApp(App)
   .component("IconPlugOff", IconPlugOff)
   .component("IconCheck", IconCheck)
   .use(router)
+  .use(store)
   .mount("#app");

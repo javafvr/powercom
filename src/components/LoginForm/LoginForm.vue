@@ -1,49 +1,55 @@
 ﻿<script setup>
 import BaseInput from "@/components/BaseInput";
-import ContextMenu from "@/components/ContextMenu";
 import Button from "@/components/Button";
 import Link from "@/components/Link";
 import Dropdown from "@/components/Dropdown";
-import { ref } from "vue";
+import { ref, onBeforeMount, computed } from "vue";
+import { useStore } from "vuex";
 
-// const props = defineProps({
-//   logoUrl: {
-//     type: String,
-//     default: "../../../public/images/logo.svg"
-//   }
-// });
+const store = useStore();
+const errors = ref({ login: "", password: "" });
+const loginForm = ref({ login: "", password: "" });
+const language = ref({ title: "English (USA)", value: "english" });
+const languageOptions = ref([
+  { title: "English (USA)", value: "english" },
+  { title: "Espanol (ES)", value: "espanol" },
+]);
 
-const errors = ref({login: "", password: ""});
-const login = ref("");
-const password = ref("");
-const language = ref({title: "English (USA)", value: "english"});
-const languageOptions = ref([{title: "English (USA)", value: "english"}, {title: "Espanol (ES)", value: "espanol"}]);
+const user = computed(() => store.state.user.user);
 
-const checkForm = (e) => {
-  errors.value = {login: "", password: ""};
-
-  if (!password.value) {
-    errors.value.password = 'Enter password';
+const login = () => {
+  if (checkForm()) {
+    store.dispatch("userAuth/login", loginForm.value);
   }
-  if (!login.value) {
-    errors.value.login = 'Enter email.';
-  } else if (!validEmail(login.value)) {
-    errors.value.login = 'Enter correct email.';
+};
+
+const checkForm = () => {
+  errors.value = { login: "", password: "" };
+
+  if (!loginForm.value.password) {
+    errors.value.password = "Enter password";
+  }
+  if (!loginForm.value.login) {
+    errors.value.login = "Enter email.";
+  } else if (!validEmail(loginForm.value.login)) {
+    errors.value.login = "Enter correct email.";
   }
 
-  if (!errors.value.login.length || !errors.value.password.length) {
+  if (errors.value.login === !"" || errors.value.password === !"") {
     return false;
   }
-
-  e.preventDefault();
-}
+  return true;
+};
 
 const validEmail = (login) => {
   var re = /.+@.+\..+/i;
   return re.test(login);
-}
+};
 
-
+onBeforeMount(() => {
+  store.dispatch("userAuth/fetchUser");
+  console.log(user);
+});
 </script>
 
 <template>
@@ -52,21 +58,16 @@ const validEmail = (login) => {
       <div :class="$style.logo">
         <img :src="require('../../../public/images/logo.svg')" alt="logo" />
       </div>
-      <Dropdown :options="languageOptions" v-model="language"/>
+      <Dropdown :options="languageOptions" v-model="language" />
     </div>
     <div :class="$style.content">
       <div :class="$style.title">Sign In</div>
       <div :class="$style.subtitle">Enter your details to proceed further</div>
-      <form
-        action="https://vuejs.org/"
-        method="post"
-        novalidate="true"
-        :class="$style.form"
-      >
+      <form method="post" novalidate="true" :class="$style.form">
         <div :class="$style.formItem">
           <BaseInput
             label="login"
-            v-model="login"
+            v-model="loginForm.login"
             type="email"
             size="XL"
             color="gray"
@@ -81,7 +82,7 @@ const validEmail = (login) => {
         </div>
         <div :class="$style.formItem">
           <BaseInput
-            v-model="password"
+            v-model="loginForm.password"
             label="Password"
             type="password"
             size="XL"
@@ -106,7 +107,16 @@ const validEmail = (login) => {
           </div>
         </div>
         <div :class="[$style.formItem, $style.formSubmit]">
-          <Button @click="checkForm" type="submit" title="Sign In" size="M" solid color="purple" stretch autocomplete/>
+          <Button
+            @click="login()"
+            type="submit"
+            title="Sign In"
+            size="M"
+            solid
+            color="purple"
+            stretch
+            autocomplete
+          />
         </div>
       </form>
     </div>

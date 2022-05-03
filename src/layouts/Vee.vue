@@ -196,6 +196,3 @@ main {
   }
 }
 </style>
-<style lang="sass" module>
-@import "@/assets/styles/utils.module"
-</style>
