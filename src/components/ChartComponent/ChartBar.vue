@@ -1,5 +1,6 @@
 ﻿<script setup>
-import { ref, defineProps } from "vue";
+import { ref, defineProps, onMounted, watch } from "vue";
+import useBreakpoints from "@/composables/_breakpoints.js"
 import { Bar } from "vue-chartjs";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import {
@@ -22,6 +23,9 @@ ChartJS.register(
 );
 
 const props = defineProps({
+  chartId: {
+    type: String
+  },
   chartData: {
     type: Object,
     required: true,
@@ -31,15 +35,18 @@ const props = defineProps({
     type: Object,
     required: false,
     default: () => {}
-  }
+  },
 });
 
+const { width } = useBreakpoints();
 const chartOptionsDefaults = ref({
   showDatapoints: true,
   responsive: true,
   maintainAspectRatio: true,
   aspectRatio: 1.5,
+  categorySpacing: 4,
   barThickness: 24,
+  // maxBarThickness: 40,
   layout: {
     padding: {
       bottom: 15,
@@ -48,8 +55,8 @@ const chartOptionsDefaults = ref({
   scales: {
     xAxes: {
       display: false,
-      barThickness: 40,
-      maxBarThickness: 40,
+      // barThickness: 40,
+      // maxBarThickness: 40,
       barPercentage: 1.0,
       categoryPercentage: 1.0,
     },
@@ -111,10 +118,57 @@ const chartOptionsDefaults = ref({
     },
   },
 });
+
+watch(
+  () => width,
+  (newValue) => {
+    console.log(newValue)
+    updateConfigByMutating();
+  }
+);
+
+const updateConfigByMutating = () => {
+  // let chartWidth = document.getElementById('info-box').clientHeight
+  const chart = ChartJS.getChart(props.chartId);
+  // console.log('breakpoint', this)
+  // console.log('width chart ', chart.getDatasetMeta())
+  // console.log('chart data ', props.chartData)
+  // switch (breakpoint.value) {
+  //   case "xxxl":
+  //     break;
+  //   default:
+  //     break;
+  // }
+  
+  chartOptionsDefaults.value.barThickness = Math.round((+chart.chartArea.width / 5) - (4*5));
+  console.log('chart width ', chart.chartArea.width);
+  console.log('thickness ', chartOptionsDefaults.value.barThickness);
+
+  chart.update();
+}
+
+
+onMounted(()=>{
+  // let chartWidth = document.getElementById('info-box').clientHeight
+  // const chart = ChartJS.getChart(props.chartId);
+  // chart.update();
+  // // console.log('breakpoint', this)
+  // console.log('width chart ', chart)
+  // switch (breakpoint.value) {
+  //   case "xxxl":
+  //     chartOptionsDefaults.value.barThickness = +chart.chartArea.width;
+  //     console.log('before mount', chartOptionsDefaults.value.barThickness);
+  //     break;
+  //   default:
+  //     break;
+  // }
+  // chart.update();
+
+})
 </script>
 
 <template>
   <div>
-    <Bar :chart-data="props.chartData" :chart-options="props.chartOptions || chartOptionsDefaults" />
+    <Bar :chartId="props.chartId" :chart-data="props.chartData" :chart-options="props.chartOptions || chartOptionsDefaults" />
   </div>
 </template>

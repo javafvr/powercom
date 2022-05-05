@@ -1,6 +1,7 @@
 ﻿<script setup>
 /* eslint-disable vue/no-v-for-template-key-on-child */
-import { defineProps, ref, onMounted, computed, onUnmounted } from "vue";
+import { defineProps, ref, onMounted, computed } from "vue";
+import useBreakpoints from "@/composables/_breakpoints.js"
 import { SmartWidgetGrid } from "vue-smart-widget";
 import { WidgetCard } from "@/components/WidgetCard";
 import { Button } from "@/components/Button";
@@ -30,9 +31,7 @@ const props = defineProps({
 const isEditMode = ref(false);
 const isShowAddNew = ref(false);
 const items = ref([]);
-const rowHeight = ref(38);
 const filteredData = ref([]);
-const windowWidth = ref(window.innerWidth);
 
 // watch(
 //   () => windowWidth,
@@ -41,23 +40,25 @@ const windowWidth = ref(window.innerWidth);
 //   }
 // );
 
-// const type = computed(() => {
-//   if (windowWidth.value < 550) return 'xs'
-//   if (windowWidth.value >= 550 && windowWidth.value < 1200) return 'md'
-//   if (windowWidth.value >= 1200) return 'lg'
-//   return null; // This is an unreachable line, simply to keep eslint happy.
-// })
+const { breakpoint}  = useBreakpoints()
 
-// const width = computed(() => windowWidth.value)
+const rowDashboard = ref({
+    xs: 65,
+    sm: 65,
+    md: 35,
+    lg: 35,
+    xl: 35,
+    xxl: 35,
+    xxxl: 65
+});
 
 const rowHeightComputed = computed(() => {
-  return rowHeight.value;
+  return rowDashboard.value[breakpoint.value];
 });
 
 const onClickEditHandler = () => {
   isEditMode.value = !isEditMode.value;
 };
-
 const onWidgetCloseHandler = (item) => {
   if (isEditMode.value) {
     items.value = items.value.filter((value) => value !== item);
@@ -66,17 +67,11 @@ const onWidgetCloseHandler = (item) => {
 const addWidgetHandler = (item) => {
   items.value.push(item);
 };
-const onWidthChange = () => {
-  windowWidth.value = window.innerWidth;
-  console.log(windowWidth.value);
-};
 
 // lifecycle hooks
 onMounted(() => {
   items.value = props.layout;
-  window.addEventListener("resize", onWidthChange);
 });
-onUnmounted(() => window.removeEventListener("resize", onWidthChange));
 
 const treeData = ref([
   {

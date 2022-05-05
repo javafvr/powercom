@@ -18,12 +18,14 @@ $breakpoints: (
   md: 768,
   lg: 992,
   xl: 1200,
-  xxl: 1400
+  xxl: 1440,
+  xxxl: 1900
 ) !default;
 
 html {
   box-sizing: border-box;
 }
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -40,5 +42,6 @@ ul {
 @for $i from 1 through 6 {
   h#{$i} {
     font-family: $main-font-family;
+     margin: unset;
   }
 }

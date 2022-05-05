@@ -51,6 +51,10 @@ const props = defineProps({
     type: String,
     default: "",
   },
+  breakpoint: {
+    type: String,
+    default: "sm",
+  },
   width: {
     type: String,
     default: "",

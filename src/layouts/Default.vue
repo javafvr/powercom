@@ -3,7 +3,7 @@ import TopPanel from "@/components/TopPanel";
 import { SidebarSlider } from "@/components/SidebarSlider";
 import MainContent from "@/components/MainContent";
 import TreeData from "@/components/TreeData";
-import AdvancedFilter from "@/components/AdvancedFilter";
+import Search from "@/components/Search";
 import LatestActivities from "@/components/LatestActivities";
 import { ref } from "vue";
 const menuItems = [
@@ -74,41 +74,41 @@ const treeData = ref([
     ],
   },
 ]);
-const categories = ref([
-  {
-    id: "paymentType",
-    name: "Payment type",
-    inputType: "select",
-    options: [
-      { title: "Prepaid", value: "prepaid", selected: "checked" },
-      { title: "Postpaid", value: "postpaid", selected: "unchecked" },
-    ],
-  },
-  {
-    id: "rateType",
-    name: "Rate type",
-    inputType: "select",
-    options: [
-      { title: "Placeholder", value: "Placeholder", selected: "checked" },
-      { title: "Area", value: "Area", selected: "unchecked" },
-    ],
-  },
-  {
-    id: "connectionType",
-    name: "Connection type",
-    inputType: "select",
-    options: [
-      { title: "Wifi", value: "Wifi", selected: "checked" },
-      { title: "Lan", value: "Lan", selected: "unchecked" },
-    ],
-  },
-  {
-    id: "netMetering",
-    name: "Net metering",
-    inputType: "input",
-    value: "meter",
-  },
-]);
+// const categories = ref([
+//   {
+//     id: "paymentType",
+//     name: "Payment type",
+//     inputType: "select",
+//     options: [
+//       { title: "Prepaid", value: "prepaid", selected: "checked" },
+//       { title: "Postpaid", value: "postpaid", selected: "unchecked" },
+//     ],
+//   },
+//   {
+//     id: "rateType",
+//     name: "Rate type",
+//     inputType: "select",
+//     options: [
+//       { title: "Placeholder", value: "Placeholder", selected: "checked" },
+//       { title: "Area", value: "Area", selected: "unchecked" },
+//     ],
+//   },
+//   {
+//     id: "connectionType",
+//     name: "Connection type",
+//     inputType: "select",
+//     options: [
+//       { title: "Wifi", value: "Wifi", selected: "checked" },
+//       { title: "Lan", value: "Lan", selected: "unchecked" },
+//     ],
+//   },
+//   {
+//     id: "netMetering",
+//     name: "Net metering",
+//     inputType: "input",
+//     value: "meter",
+//   },
+// ]);
 const filteredTree = ref([]);
 
 const latestActivities = ref([
@@ -168,10 +168,10 @@ const latestActivities = ref([
         <div :class="$style.w100" v-show="isSidebarOpened">
           <h4 :class="[$style.title4, $style.mbXS]">Areas</h4>
           <div :class="[$style.mbXS]">
-            <AdvancedFilter
+            <Search
               v-model="filteredTree"
               :data="treeData"
-              :categories="categories"
+              outline
             />
           </div>
           <TreeData :items="filteredTree" />
@@ -190,7 +190,7 @@ const latestActivities = ref([
   </div>
 </template>
 <style lang="scss" module>
-  @import "@/assets/styles/index";
+  // @import "@/assets/styles/index";
 </style>
 <style lang="scss" scoped>
 .container {
@@ -227,7 +227,7 @@ footer {
   height: 80px;
 }
 
-@media only screen and (min-width: 576px) {
+@media only screen and (min-width: 768px) {
   .container {
     height: 100vh;
     grid-template-columns: auto 2fr 0.6fr;

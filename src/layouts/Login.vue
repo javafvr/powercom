@@ -9,10 +9,10 @@
       autoplay
       muted
       loop
-      :poster="require('../../public/images/bg.png')"
+      :poster="require('../../public/images/bg.jpg')"
     >
       <source
-        src="https://cdn.videvo.net/videvo_files/video/free/2019-07/small_watermarked/Raw_Vegan_Blueberry_Cake_Cut_Birthday_Cooking_preview.webm"
+        :src="require('@/../public/images/bgvideof.webm')"
         type="video/webm"
       />
       Your browser does not support the video tag.

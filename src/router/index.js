@@ -33,7 +33,7 @@ const router = createRouter({
       path: "/dashboard",
       component: DashboardPage,
       meta: {
-        requiresAuth: true,
+        requiresAuth: false,
         layout: 'default-layout',
         breadcrumb: [
           {

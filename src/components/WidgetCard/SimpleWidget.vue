@@ -74,14 +74,13 @@ const props = defineProps({
     >
       <ChartBar
         v-if="chart.type == 'bar'"
-        width="100%"
-        chartId="chart-bar"
+        :chartId="props.chart.type + Math.random(30)"
         :chartData="chart.data"
+        :chartOptions="chart.options"
       />
       <ChartRadialGauge
         v-if="chart.type == 'gauge'"
         chartId="radial-gauge"
-        width="100%"
         :chartData="chart.data"
       />
     </div>
