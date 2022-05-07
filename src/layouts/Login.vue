@@ -54,6 +54,7 @@ main {
     height: 100vh;
     justify-content: flex-start;
     align-items: center;
+    // padding: 0 71px;
   }
 
   main {

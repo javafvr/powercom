@@ -1,5 +1,5 @@
 ﻿<script setup>
-import { defineProps } from "vue";
+import { defineProps, onMounted } from "vue";
 import { ChartBar, ChartRadialGauge } from "@/components/ChartComponent";
 
 const props = defineProps({
@@ -20,6 +20,20 @@ const props = defineProps({
     default: false,
   },
 });
+
+
+onMounted(() => {
+  // const chartId = props.chart.type + Math.random(30);
+  // const $style = useCssModule();
+  // const chartHeader = document.querySelector('.'+$style.header).getBoundingClientRect().height;
+  // const chartWrapper = document.querySelector('.'+$style.contentWrapper).getBoundingClientRect().height;
+  // const chartOffset = chartWrapper - chartHeader;
+
+  // console.log('chartOffset ', chartOffset)
+  // console.log('chartOffset ', ChartRadialGauge)
+  console.log('chartOffset ', this)
+  // console.log('header ', document.querySelector('.'+$style.header))
+})
 </script>
 
 <template>
@@ -45,7 +59,7 @@ const props = defineProps({
           <span :class="[$style.secondIndicator]">{{
             props.indicators.secondIndicator.title
           }}</span>
-          <ul :class="[$style.secondIndicatorDesc]">
+          <ul :class="[$style.secondIndicatorDescription]">
             <li>
               {{ props.indicators.secondIndicator.description }}
             </li>
@@ -82,6 +96,7 @@ const props = defineProps({
         v-if="chart.type == 'gauge'"
         chartId="radial-gauge"
         :chartData="chart.data"
+        :chartOffset="chartOffset"
       />
     </div>
   </div>

@@ -78,8 +78,16 @@
 @include respond-to(sm) {
   .loginForm {
     padding: 48px 96px 111px;
+    max-height: 90%;
   }
   .form {
     width: 288px;
+  }
+}
+
+@media screen and (max-height: 790px) {
+  .loginForm {
+    padding: 30px 45px 30px;
+    max-height: 90%;
   }
 }

@@ -1,5 +1,5 @@
 ﻿<script setup>
-import { ref, defineProps, onMounted, watch } from "vue";
+import { ref, defineProps, onMounted } from "vue";
 import useBreakpoints from "@/composables/_breakpoints.js"
 import { Bar } from "vue-chartjs";
 import ChartDataLabels from "chartjs-plugin-datalabels";
@@ -38,7 +38,7 @@ const props = defineProps({
   },
 });
 
-const { width } = useBreakpoints();
+const { breakpoint } = useBreakpoints();
 const chartOptionsDefaults = ref({
   showDatapoints: true,
   responsive: true,
@@ -119,51 +119,18 @@ const chartOptionsDefaults = ref({
   },
 });
 
-watch(
-  () => width,
-  (newValue) => {
-    console.log(newValue)
-    updateConfigByMutating();
-  }
-);
-
-const updateConfigByMutating = () => {
-  // let chartWidth = document.getElementById('info-box').clientHeight
-  const chart = ChartJS.getChart(props.chartId);
-  // console.log('breakpoint', this)
-  // console.log('width chart ', chart.getDatasetMeta())
-  // console.log('chart data ', props.chartData)
-  // switch (breakpoint.value) {
-  //   case "xxxl":
-  //     break;
-  //   default:
-  //     break;
-  // }
-  
-  chartOptionsDefaults.value.barThickness = Math.round((+chart.chartArea.width / 5) - (4*5));
-  console.log('chart width ', chart.chartArea.width);
-  console.log('thickness ', chartOptionsDefaults.value.barThickness);
-
-  chart.update();
-}
-
-
 onMounted(()=>{
-  // let chartWidth = document.getElementById('info-box').clientHeight
-  // const chart = ChartJS.getChart(props.chartId);
-  // chart.update();
-  // // console.log('breakpoint', this)
-  // console.log('width chart ', chart)
-  // switch (breakpoint.value) {
-  //   case "xxxl":
-  //     chartOptionsDefaults.value.barThickness = +chart.chartArea.width;
-  //     console.log('before mount', chartOptionsDefaults.value.barThickness);
-  //     break;
-  //   default:
-  //     break;
-  // }
-  // chart.update();
-
+  const chart = ChartJS.getChart(props.chartId);
+  switch (breakpoint.value) {
+    case "xxxl":
+      chartOptionsDefaults.value.barThickness = 45;
+      chartOptionsDefaults.value.plugins.datalabels.labels.value.font.size = 16;
+      chartOptionsDefaults.value.plugins.datalabels.labels.title.font.size = 12;
+      break;
+    default:
+      break;
+  }
+  chart.update();
 })
 </script>
 
