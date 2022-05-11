@@ -1,5 +1,5 @@
 ﻿<script setup>
-import { defineProps, onMounted } from "vue";
+import { defineProps, onMounted, ref, nextTick, watch } from "vue";
 import { ChartBar, ChartRadialGauge } from "@/components/ChartComponent";
 
 const props = defineProps({
@@ -19,26 +19,55 @@ const props = defineProps({
     type: [Boolean, Object],
     default: false,
   },
+  updateEvent: {
+    type: [Boolean, Object, Array],
+    default: false,
+  },
 });
 
+const header = ref(null);
+const wrapper = ref(null);
+const chartHeight = ref(null);
+
+const getAbsoluteHeight = (el) => {
+  const styles = window.getComputedStyle(el);
+  const paddings =
+    parseFloat(styles['paddingTop']) +
+    parseFloat(styles['paddingBottom']);
+
+  return Math.ceil(el.offsetHeight - paddings);
+}
+
+const calculateCHartHeight = () => {
+  const chartHeader = header.value.getBoundingClientRect().height;
+  const wrapperContent = getAbsoluteHeight(wrapper.value);
+  chartHeight.value = wrapperContent - chartHeader;
+}
+
+watch(
+  () => props.updateEvent,
+  (newValue) => {
+    console.log("hello simple widget", newValue)
+    calculateCHartHeight();
+  }
+);
 
 onMounted(() => {
-  // const chartId = props.chart.type + Math.random(30);
-  // const $style = useCssModule();
-  // const chartHeader = document.querySelector('.'+$style.header).getBoundingClientRect().height;
-  // const chartWrapper = document.querySelector('.'+$style.contentWrapper).getBoundingClientRect().height;
-  // const chartOffset = chartWrapper - chartHeader;
+  nextTick(() => {
+    calculateCHartHeight();
 
-  // console.log('chartOffset ', chartOffset)
-  // console.log('chartOffset ', ChartRadialGauge)
-  console.log('chartOffset ', this)
-  // console.log('header ', document.querySelector('.'+$style.header))
+    // console.log("-----------------------")
+    // console.log('header ', chartHeader)
+    // console.log('content wrapper ', wrapperContent)
+    // console.log('chartHeight ', chartHeight.value)
+    // console.log('============ ', header)
+  })
 })
 </script>
 
 <template>
-  <div :class="$style.contentWrapper">
-    <div :class="$style.header">
+  <div :class="$style.contentWrapper" ref="wrapper">
+    <div :class="$style.header" ref="header">
       <div :class="[$style.title]">{{ props.title }}</div>
       <div :class="[$style.mainContent]">
         <div
@@ -81,7 +110,6 @@ onMounted(() => {
       v-if="chart"
       :class="[
         $style.chart,
-        $style.chart,
         { [$style.bar]: chart.type === 'bar' },
         { [$style.gauge]: chart.type === 'gauge' },
       ]"
@@ -91,12 +119,13 @@ onMounted(() => {
         :chartId="props.chart.type + Math.random(30)"
         :chartData="chart.data"
         :chartOptions="chart.options"
+        :height="chartHeight"
       />
       <ChartRadialGauge
         v-if="chart.type == 'gauge'"
         chartId="radial-gauge"
         :chartData="chart.data"
-        :chartOffset="chartOffset"
+        :height="chartHeight"
       />
     </div>
   </div>

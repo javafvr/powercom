@@ -68,6 +68,12 @@ const addWidgetHandler = (item) => {
   items.value.push(item);
 };
 
+const updateEvent = ref(false);
+const handlerUpdate = (event) => {
+  updateEvent.value = event;
+  console.log('ready', event);
+}
+
 // lifecycle hooks
 onMounted(() => {
   items.value = props.layout;
@@ -277,9 +283,11 @@ const filteredTree = ref([]);
         :margin="[24, 24]"
         :cols="{ lg: 8, md: 8, sm: 8, xs: 4, xxs: 2 }"
         :rowHeight="rowHeightComputed"
+        @layout-ready="handlerUpdate($event)"
       >
         <template v-for="item in items" v-slot:[item.i]>
           <WidgetCard
+            ref="widgetCard"
             :key="item.i"
             :title="item.title"
             :color="item.color"
@@ -294,6 +302,7 @@ const filteredTree = ref([]);
             :selector="item.selector"
             :padding="0"
             @widget:close="onWidgetCloseHandler(item)"
+            :updateEvent="updateEvent"
           />
         </template>
       </smart-widget-grid>

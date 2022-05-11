@@ -27,7 +27,7 @@ const props = defineProps({
     required: false,
     default: () => {},
   },
-  chartOffset: Number
+  height: Number,
 });
 
 class RadialGaugeController extends DoughnutController {
@@ -150,12 +150,13 @@ class RadialGaugeController extends DoughnutController {
 
 const chartOptionsDefaults = {
   type: "radialGauge",
-  cutout: '73%', // precent 63
+  cutout: '80%', // precent 63
   rotation: 0,
   borderJoinStyle: "round",
   borderWidth: false,
   backgroundColor: "#E4E4E4",
-  responsible: true,
+  responsive: true,
+  maintainAspectRatio: false,
   font: {
     fontColor: "ffffff",
   },
@@ -204,8 +205,8 @@ const chartOptionsDefaults = {
 
 RadialGaugeController.id = "radialGauge";
 RadialGaugeController.defaults = DoughnutController.defaults;
-RadialGaugeController.defaults.width = "96";
-RadialGaugeController.defaults.height = "96";
+// RadialGaugeController.defaults.style.hight = '16px';
+
 const RadialGauge = generateChart(
   props.chartId,
   "radialGauge",
@@ -213,13 +214,17 @@ const RadialGauge = generateChart(
 );
 </script>
 
+<script>
+export default {
+  inheritAttrs: false,
+};
+</script>
+
 <template>
-  <div>
-    <RadialGauge
-      :chartId="props.chartId"
-      :chart-data="props.chartData"
-      :chart-options="props.chartOptions || chartOptionsDefaults"
-      :styles="{ height: '128px', width: '128px', margin: '0 auto' }"
-    />
-  </div>
+  <RadialGauge
+    :chartId="props.chartId"
+    :chart-data="props.chartData"
+    :chart-options="props.chartOptions || chartOptionsDefaults"
+    :styles="{ position: 'relative', 'height': props.height + 'px', 'max-height': '100%' }"
+  />
 </template>

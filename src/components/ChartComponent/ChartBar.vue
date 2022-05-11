@@ -36,13 +36,14 @@ const props = defineProps({
     required: false,
     default: () => {}
   },
+  height: Number
 });
 
 const { breakpoint } = useBreakpoints();
 const chartOptionsDefaults = ref({
   showDatapoints: true,
   responsive: true,
-  maintainAspectRatio: true,
+  maintainAspectRatio: false,
   aspectRatio: 1.5,
   categorySpacing: 4,
   barThickness: 24,
@@ -134,8 +135,19 @@ onMounted(()=>{
 })
 </script>
 
+<script>
+export default {
+  inheritAttrs: false,
+};
+</script>
+
 <template>
   <div>
-    <Bar :chartId="props.chartId" :chart-data="props.chartData" :chart-options="props.chartOptions || chartOptionsDefaults" />
+    <Bar
+      :chartId="props.chartId"
+      :chart-data="props.chartData"
+      :chart-options="props.chartOptions || chartOptionsDefaults"
+      :styles="{ position: 'relative', 'height': props.height + 'px', 'max-height': '100%' }"
+    />
   </div>
 </template>

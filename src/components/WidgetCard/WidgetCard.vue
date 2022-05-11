@@ -79,9 +79,14 @@ const props = defineProps({
     type: [Boolean, Object],
     default: false,
   },
+  updateEvent: {
+    type: [Boolean, Object, Array],
+    default: false,
+  },
 });
 
 const emit = defineEmits(["widget:close"]);
+
 </script>
 
 <template>
@@ -101,11 +106,13 @@ const emit = defineEmits(["widget:close"]);
       :content="props.content"
     />
     <SimpleWidget
+      ref="simpleWidget"
       v-if="props.template === 'simpleWidget'"
       :title="props.title"
       :indicators="props.indicators"
       :chart="props.chart"
       :selector="props.selector"
+      :updateEvent="updateEvent"
     />
     <TotalChartWidget
       v-if="props.template === 'totalChartWidget'"
