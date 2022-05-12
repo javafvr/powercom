@@ -1,4 +1,4 @@
-﻿.breadcrumbs .breadcrumbsList {
+﻿.breadcrumbs .list {
   list-style-type: none;
   margin: 0;
   display: flex;
@@ -8,7 +8,7 @@
   color: rgba($color-gray-dark, 0.6);
 }
 
-.breadcrumbs .breadcrumbsItem + .breadcrumbsItem {
+.breadcrumbs .item + .item {
   margin-left: 12px;
   font-size: 14px;
   font-weight: 400;
@@ -16,7 +16,7 @@
   letter-spacing: 0.25px;
 }
 
-.breadcrumbs .breadcrumbsItemLink a{
+.breadcrumbs .itemLink a{
   text-decoration: unset;
   color: $color-purple;
   font-size: 14px;
@@ -25,13 +25,17 @@
   letter-spacing: 0.25px;
 }
 
+.breadcrumbs .item span{
+  display: flex;
+}
+
 .contextIcon svg{
   cursor: pointer;
   fill: rgba($color-gray-dark, 0.6);
 }
 
 .contextList{
-  padding: 0;
+  padding: 5px;
   list-style-type: none;
 }
 

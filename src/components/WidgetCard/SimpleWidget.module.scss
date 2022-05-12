@@ -92,7 +92,7 @@ $card-padding: 16px;
   font-weight: 600;
   line-height: 12px;
   letter-spacing: 0px;
-  color: $color-white;
+  color: rgba($color-white, 0.8);
   white-space: nowrap;
   fill: $color-white;
 
@@ -195,7 +195,7 @@ $card-padding: 16px;
     padding: 24px;
   }
   .chart.bar {
-    width: 295px;
+    padding: 0;
   }
 }
 

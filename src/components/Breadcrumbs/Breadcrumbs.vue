@@ -22,13 +22,13 @@ const breadcrumbs = ref(genBreadcrumbs);
 
 <template>
   <div :class="$style.breadcrumbs">
-    <ul :class="$style.breadcrumbsList">
+    <ul :class="$style.list">
       <li
         v-for="(item, index) in breadcrumbs"
         :key="index"
         :class="[
-          $style.breadcrumbsItem,
-          { [$style.breadcrumbsItemLink]: item.link },
+          $style.item,
+          { [$style.itemLink]: item.link },
         ]"
       >
         <span v-if="!item.link" :class="$style.context">{{ item.text }}</span>
@@ -44,13 +44,13 @@ const breadcrumbs = ref(genBreadcrumbs);
           <template #content>
             <ul :class="$style.contextList">
               <li :class="$style.contextListItem">
-                <router-link :class="$style.breadcrumbsItemLink" to="/">Home</router-link>
+                <router-link :class="$style.itemLink" to="/">Home</router-link>
               </li>
               <li :class="$style.contextListItem">
-                <router-link :class="$style.breadcrumbsItemLink" to="/">Home</router-link>
+                <router-link :class="$style.itemLink" to="/">Home</router-link>
               </li>
               <li :class="$style.contextListItem">
-                <router-link :class="$style.breadcrumbsItemLink" to="/">Home</router-link>
+                <router-link :class="$style.itemLink" to="/">Home</router-link>
               </li>
             </ul>
           </template>

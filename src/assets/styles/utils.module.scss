@@ -1,4 +1,28 @@
-﻿// Flex helpers
+﻿$main-font-family: "IBM Plex Sans", sans-serif;
+$main-transition: 0.5s;
+
+$spacing:
+  "XSSS" 4px,
+  "XSS" 8px,
+  "XS" 16px,
+  "S" 24px,
+  "M" 32px,
+  "L" 48px,
+  "XL" 60px,
+  "XXL" 80px,
+  "XXXL" 96px;
+
+$breakpoints: (
+  xs: 0,
+  sm: 576,
+  md: 768,
+  lg: 992,
+  xl: 1200,
+  xxl: 1440,
+  xxxl: 1900
+) !default;
+
+// Flex helpers
 .flex {
   display: flex;
 }

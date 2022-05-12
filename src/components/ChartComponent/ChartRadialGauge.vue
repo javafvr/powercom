@@ -150,7 +150,7 @@ class RadialGaugeController extends DoughnutController {
 
 const chartOptionsDefaults = {
   type: "radialGauge",
-  cutout: '80%', // precent 63
+  cutout: '81%', // precent 63
   rotation: 0,
   borderJoinStyle: "round",
   borderWidth: false,
