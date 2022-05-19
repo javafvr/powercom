@@ -118,3 +118,23 @@ $card-padding: 16px;
   }
   background-color: $color-gray;
 }
+
+@include respond-to(xxxl) {
+  .title {
+    font-size: 24px;
+    line-height:32px;
+  }
+  .mainIndicator {
+    font-size: 45px;
+    line-height:52px;
+  }
+  .secondIndicator {
+    font-size: 16px;
+    line-height:24px;
+    font-weight: 700;
+  }
+  .secondIndicatorDesc {
+    font-size: 12px;
+    line-height:16px;
+  }
+}

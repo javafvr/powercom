@@ -1,5 +1,5 @@
 ﻿// Card settings
-$card-padding: 16px 12px 25px 12px;
+$card-padding: 16px;
 
 .title {
   display: flex;
@@ -10,12 +10,17 @@ $card-padding: 16px 12px 25px 12px;
   line-height: 24px;
   letter-spacing: 0px;
   margin-bottom: 8px;
+  color: $color-white;
   & + .mainContent {
     margin-bottom: 4px;
   }
-  svg + span {
+  span + span {
     margin-left: 4px;
   }
+}
+
+.titleIcon {
+  margin-top: 4px;
 }
 
 .contentWrapper {
@@ -41,14 +46,23 @@ $card-padding: 16px 12px 25px 12px;
   padding: 0 13px;
 }
 
-.listItem {
-
-}
-
 .listItemTitle {
   color: $color-white;
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
   letter-spacing: 0px;
+}
+
+@include respond-to(xxxl) {
+  .title {
+    font-size: 24px;
+    line-height:32px;
+  }
+  .titleIcon {
+    margin-top: 6px;
+  }
+  .contentWrapper {
+    padding: 24px;
+  }
 }

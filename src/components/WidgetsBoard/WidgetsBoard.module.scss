@@ -103,3 +103,35 @@
     width: 391px;
   }
 }
+
+@include respond-to(xxxl) {
+  .gridWrapper {
+    margin: 0 -24px 0 -24px;
+  }
+  .previewWidget,
+  .listWidget,
+  .simpleWidget {
+    height: 332px;
+    min-width: 330px;
+    max-width: 330px;
+  }
+
+  .alertsWidget {
+    height: 330px;
+    width: 65%;
+  }
+
+  .totalWidget {
+    height: 332px;
+    width: 330px;
+  }
+
+  .totalChartWidget {
+    height: 330px;
+    width: 65%;
+  }
+
+  .previewGrid {
+    gap: 26px;
+  }
+}

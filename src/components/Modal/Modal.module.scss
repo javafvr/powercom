@@ -83,3 +83,11 @@
     padding: $modal-padding;
   }
 }
+
+@include respond-to(xxxl) {
+  .container {
+    width: 54%;
+    height: 824px;
+    padding: $modal-padding;
+  }
+}

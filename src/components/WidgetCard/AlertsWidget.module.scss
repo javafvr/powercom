@@ -1,5 +1,5 @@
 ﻿// Card settings
-$card-padding: 16px 24px 40px 24px;
+$card-padding: 16px;
 
 .title {
   display: flex;
@@ -10,6 +10,7 @@ $card-padding: 16px 24px 40px 24px;
   line-height: 28px;
   letter-spacing: 0px;
   margin-bottom: 16px;
+  color: $color-white;
   svg + span {
     margin-left: 8px;
   }
@@ -63,4 +64,10 @@ $card-padding: 16px 24px 40px 24px;
   font-weight: 700;
   line-height: 24px;
   letter-spacing: 0px;
+}
+
+@include respond-to(xxxl) {
+  .contentWrapper {
+    padding: 24px;
+  }
 }

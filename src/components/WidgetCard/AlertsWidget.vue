@@ -31,6 +31,7 @@ const props = defineProps({
         </div>
       </div>
     </div>
+    <div :class="$style.footer"></div>
   </div>
 </template>
 

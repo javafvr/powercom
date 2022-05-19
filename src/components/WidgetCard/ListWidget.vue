@@ -17,7 +17,9 @@ const props = defineProps({
   <div :class="$style.contentWrapper">
     <div :class="$style.header">
       <div :class="[$style.title]">
-        <IconPlugOff />
+        <span :class="$style.titleIcon">
+          <IconPlugOff />
+        </span>
         <span>{{ props.title }}</span>
       </div>
     </div>
@@ -28,6 +30,7 @@ const props = defineProps({
         </div>
       </li>
     </ul>
+    <div :class="$style.footer"></div>
   </div>
 </template>
 
