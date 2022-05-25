@@ -42,4 +42,19 @@ createApp(App)
   .component("IconCheck", IconCheck)
   .use(router)
   .use(store)
+  .directive('click-outside', {
+    beforeMount(el, binding) {
+      el.clickOutsideEvent = (evt) => {
+      evt.stopPropagation();
+      if (!(el === evt.target || el.contains(evt.target))) {
+        binding.value(evt, el);
+      }
+    }
+      // Wait 1 frame otherwise a potential click that mounted the element will immediately trigger a click-outside event:
+      window.requestAnimationFrame(() => { document.addEventListener('click', el.clickOutsideEvent) });
+    },
+    unmounted(el) {
+      document.removeEventListener('click', el.clickOutsideEvent);
+    },
+  })
   .mount("#app");

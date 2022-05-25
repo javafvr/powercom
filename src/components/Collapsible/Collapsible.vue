@@ -1,14 +1,14 @@
 ﻿<script setup>
-import { useCssModule, computed, ref } from "vue";
+import { useCssModule, computed, ref, defineProps } from "vue";
 import {IconArrowDropDown} from "@/components/Icon";
 
 const $style = useCssModule();
-// const props = defineProps({
-//   transitionDuration: {
-//     type: String,
-//     default: '400ms',
-//   }
-// });
+const props = defineProps({
+  onHover: {
+    type: Boolean,
+    default: false,
+  }
+});
 
 const isOpen = ref(false);
 
@@ -21,14 +21,27 @@ const onClickHandler = () => {
   isOpen.value = !isOpen.value;
 };
 
+const onHoverHandler = () => {
+  if(props.onHover) {
+    isOpen.value = true;
+  }
+};
+
+const onLeaveHandler = () => {
+  if(props.onHover) {
+    isOpen.value = false;
+  }
+};
+
 // onMounted(() => {
 //   state.value = props.modelValue;
 // })
 </script>
 
 <template>
-  <div :class="[$style.collapsible, classes]">
+  <div :class="[$style.collapsible, classes]" @mouseover="onHoverHandler" @mouseleave="onLeaveHandler">
     <button
+      v-if="!props.onHover"
       @click.prevent="onClickHandler"
       type="button"
       :class="$style.trigger"
@@ -36,7 +49,14 @@ const onClickHandler = () => {
       <slot name="trigger" />
       <IconArrowDropDown width="16" height="16"/>
     </button>
-
+    <button
+      v-else
+      type="button"
+      :class="$style.trigger"
+    >
+      <slot name="trigger" />
+      <IconArrowDropDown width="16" height="16"/>
+    </button>
     <Transition name="slide" mode="in-out">
       <div
         :class="$style.content"

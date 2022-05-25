@@ -3,12 +3,12 @@ import { defineProps, defineEmits } from "vue";
 import { SmartWidget } from "vue-smart-widget";
 import { Button } from "@/components/Button";
 import { IconNavigationClose } from "@/components/Icon/";
-import PreviewWidget from "@/components/WidgetCard/PreviewWidget";
-import AlertsWidget from "@/components/WidgetCard/AlertsWidget";
-import SimpleWidget from "@/components/WidgetCard/SimpleWidget";
-import ListWidget from "@/components/WidgetCard/ListWidget";
-import TotalWidget from "@/components/WidgetCard/TotalWidget";
-import TotalChartWidget from "@/components/WidgetCard/TotalChartWidget";
+import PreviewWidget from "@/components/WidgetCard/templates/PreviewWidget";
+import AlertsWidget from "@/components/WidgetCard/templates/AlertsWidget";
+import SimpleWidget from "@/components/WidgetCard/templates/SimpleWidget";
+import ListWidget from "@/components/WidgetCard/templates/ListWidget";
+import TotalWidget from "@/components/WidgetCard/templates/TotalWidget";
+import TotalChartWidget from "@/components/WidgetCard/templates/TotalChartWidget";
 
 const props = defineProps({
   title: {

@@ -10,18 +10,14 @@ const props = defineProps({
 });
 
 //Methods
-const open = () => {
-  isOpenContextMenu.value = true;
-};
-const close = (event) => {
-  console.log(event)
+const close = () => {
   isOpenContextMenu.value = false;
 };
 </script>
 
 <template>
-  <div :class="$style.contextMenu">
-    <div @click="open">
+  <div :class="$style.contextMenu" v-click-outside="() => isOpenContextMenu = false">
+    <div @click="() => isOpenContextMenu = !isOpenContextMenu">
       <slot name="activator"></slot>
     </div>
     <div
@@ -29,11 +25,10 @@ const close = (event) => {
         $style.content,
         { [$style.openedContextMenu]: isOpenContextMenu },
       ]"
-      @blur="close($event)"
-      @click="props.closeOnClick ? close($event) : false"
+      @click="props.closeOnClick ? close() : false"
       tabindex="0"
     >
-      <slot name="content" tabindex="0" ></slot>
+      <slot name="content"></slot>
     </div>
   </div>
 </template>

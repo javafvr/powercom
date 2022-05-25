@@ -8,11 +8,11 @@
   width: 16px;
   height: 16px;
   border: 1px solid $color-gray-dark-3;
-  cursor: pointer;
   border-radius: 2px;
 }
 
 .input {
+  cursor: pointer;
   display: block;
   margin: 0;
   opacity: 0;

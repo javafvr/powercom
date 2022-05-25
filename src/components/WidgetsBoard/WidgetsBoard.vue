@@ -158,7 +158,7 @@ const categories = ref([
   {
     id: "netMetering",
     name: "Net metering",
-    inputType: "input",
+    inputType: "tagToggle",
     value: "meter",
   },
 ]);

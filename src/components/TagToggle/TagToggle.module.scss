@@ -1,0 +1,67 @@
+﻿.tagToggle {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  cursor: pointer;
+  padding: 8px 12px;
+  border: 1px solid $color-gray-dark-3;
+  border-radius: 16px;
+  transition: all ease-in-out 300ms;
+}
+
+.close {
+  display: none;
+}
+
+.close svg path {
+  fill: currentColor;
+}
+
+.active .close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.purple {
+  color: $color-purple;
+  border-color: $color-purple;
+}
+
+.active.purple {
+  color: $color-white;
+  background-color: $color-purple;
+}
+
+.gray {
+  color: $color-gray-dark-3;
+}
+
+.active.gray {
+  color: $color-white;
+  background-color: $color-gray-dark-3;
+}
+
+.green {
+  color: $color-green;
+}
+
+.active.green {
+  color: $color-white;
+  background-color: $color-green;
+}
+
+.S.round {
+  border-radius: 16px;
+}
+
+.S .label {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.S .label + .close {
+  margin-left: 8px;
+}

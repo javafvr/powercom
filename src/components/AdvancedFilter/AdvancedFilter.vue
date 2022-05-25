@@ -2,6 +2,7 @@
 import BaseInput from "@/components/BaseInput";
 import Select from "@/components/Select";
 import Search from "@/components/Search";
+import TagToggle from "@/components/TagToggle";
 
 import { defineProps, computed, ref, defineEmits, onMounted, onBeforeMount, watch } from "vue";
 
@@ -49,7 +50,6 @@ const classes = computed(() => ({
 const emit = defineEmits(["update:modelValue"]);
 
 const updateValue = () => {
-  console.log('update model')
   emit("update:modelValue", filteredTree.value);
 };
 
@@ -142,6 +142,7 @@ onMounted(() => {
           block
           round
         />
+        <TagToggle v-if="category.inputType === 'tagToggle'" v-model="selectedCategories[category.id]" :label="category.name" size="S" color="gray" round block/>
         <BaseInput v-if="category.inputType === 'input'" v-model="selectedCategories[category.id]" outline :placeholder="category.name" size="XS" round block />
       </div>
     </div>
@@ -151,11 +152,6 @@ onMounted(() => {
     >
       Advanced search
     </div>
-    <!-- <div> -->
-      <!-- <pre> -->
-        <!-- {{filteredTreeTmp}} -->
-      <!-- </pre> -->
-    <!-- </div> -->
   </div>
 </template>
 

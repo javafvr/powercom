@@ -71,15 +71,7 @@ $card-padding: 16px;
 }
 
 .secondIndicator {
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 16px;
-  color: $color-white;
-  fill: $color-white;
-}
-
-.secondIndicator {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 12px;
   line-height: 16px;
   color: $color-white;
@@ -88,9 +80,9 @@ $card-padding: 16px;
 
 .secondIndicatorDescription {
   position: relative;
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 600;
-  line-height: 12px;
+  line-height: 16px;
   letter-spacing: 0px;
   color: rgba($color-white, 0.8);
   white-space: nowrap;
@@ -109,7 +101,6 @@ $card-padding: 16px;
     transform: translateY(-50%);
     font-size: 10px;
   }
-
 }
 
 .chart.bar {
@@ -123,30 +114,11 @@ $card-padding: 16px;
   height: 100%;
   max-height: 100%;
   position: relative;
-  // display: inline-flex;
-  // max-width: 100%;
-  // height: 100%;
-  // width: 96px;
-  // height: 96px;
-  // width: 100%;
-  // padding-top: 100%;
-  // margin: 0 auto;
-  // position: relative;
-  // canvas {
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  //   bottom: 0;
-  //   right: 0;
-  // }
 }
 
 @include respond-to(sm) {
   .chart.bar {
     width: 100%;
-  }
-  .chart.gauge {
-    // width: 136px;
   }
 }
 

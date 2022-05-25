@@ -63,7 +63,6 @@ const updateModel = (option) => {
       if (item.value !== option.value) {
         return item;
       }
-
     });
   } else {
     selectedOptions.value.push(option);
@@ -80,14 +79,13 @@ onMounted(() => {
 <template>
   <div
     @focus="!isDisabled && openSelect()"
-    @blur="closeSelect"
     tabindex="0"
     :class="$style.select"
+    v-click-outside="() => closeSelect()"
   >
     <BaseInput
       v-model="inputValue"
       @focus="openSelect"
-      @blur="closeSelect"
       :outline="props.outline"
       :size="props.size"
       :placeholder="props.placeholder"
@@ -95,7 +93,9 @@ onMounted(() => {
       :block="props.block"
     >
       <template #append>
-        <IconArrowDropDown width="16" height="16" />
+        <div @click="isOpenSelect = !isOpenSelect">
+          <IconArrowDropDown width="16" height="16" />
+        </div>
       </template>
     </BaseInput>
     <div v-show="isOpenSelect" :class="$style.selectList">
@@ -104,14 +104,14 @@ onMounted(() => {
           :class="$style.listItem"
           v-for="option in props.options"
           :key="option.value"
-          @click="updateModel(option)"
+          
         >
           <Checkbox
             v-if="props.isMultiple"
             v-model="option.selected"
             :label="option.title"
           />
-          <div v-else>{{ option.title }}</div>
+          <div v-else @click="updateModel(option)">{{ option.title }}</div>
         </li>
       </ul>
     </div>

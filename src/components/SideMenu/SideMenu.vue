@@ -22,7 +22,7 @@ const classes = computed(() => ({
       :key="item.id"
       :class="[$style.block, classes]"
     >
-      <Collapsible v-if="item.children">
+      <Collapsible v-if="item.children" onHover>
         <template #trigger>
           <div :class="$style.header">
             {{ item.title }}

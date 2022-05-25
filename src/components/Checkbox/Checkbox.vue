@@ -27,7 +27,7 @@ const props = defineProps({
   modelValue: String,
 });
 
-const state = ref("indeterminate");
+const state = ref("unchecked");
 
 const isChecked = computed(() => {
   return state.value === "checked" ? true : false;
@@ -45,6 +45,7 @@ const emit = defineEmits(["update:modelValue"]);
 
 const updateValue = () => {
   state.value = state.value === "checked" ? "unchecked" : "checked";
+  console.log(state.value);
   emit("update:modelValue", state.value);
 };
 
@@ -54,24 +55,24 @@ onMounted(() => {
 </script>
 
 <template>
-  <label :class="[$style.checkbox, classes]">
+  <div :class="[$style.checkbox, classes]" @click.stop="updateValue">
     <div :class="$style.inputWrapper">
-      <input
-        type="checkbox"
-        :class="[$style.input]"
-        :indeterminate.prop="isIndeterminate"
-        @click.stop="updateValue"
-        :value="modelValue"
-      />
       <span v-if="isChecked && !isIndeterminate" :class="$style.checkmark">
         <IconCheck />
       </span>
       <span v-if="isIndeterminate" :class="$style.indeterminate"></span>
+      <input
+        type="checkbox"
+        :class="[$style.input]"
+        :indeterminate.prop="isIndeterminate"
+
+        :value="modelValue"
+      />
     </div>
     <div :class="$style.label">
       {{ props.label }}
     </div>
-  </label>
+  </div>
 </template>
 
 <style lang="scss" module>

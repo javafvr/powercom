@@ -22,6 +22,7 @@ const currentUser = {
   image: require("@/components/TopPanel/images/user1.jpg"),
 };
 const isSidebarOpened = ref(true);
+const isAdvancedFilter = ref(false);
 const onCloseClickHandler = (event) => {
   isSidebarOpened.value = event;
 };
@@ -174,6 +175,12 @@ const latestActivities = ref([
               outline
             />
           </div>
+          <div
+            class="link-toggle"
+            @click="isAdvancedFilter = !isAdvancedFilter"
+          >
+              Advanced search
+          </div>
           <TreeData :items="filteredTree" />
         </div>
       </SidebarSlider>
@@ -225,6 +232,20 @@ main {
 
 footer {
   height: 80px;
+}
+
+.link-toggle {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.25px;
+  text-decoration-line: underline;
+  color: $color-purple;
+  margin-left: auto;
+  cursor: pointer;
+  width: 100%;
+  text-align: right;
+  margin-bottom: 16px;
 }
 
 @media only screen and (min-width: 768px) {
