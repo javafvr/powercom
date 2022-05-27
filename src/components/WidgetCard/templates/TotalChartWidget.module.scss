@@ -104,7 +104,7 @@ $card-padding: 16px;
   }
   .secondIndicator,
   .mainIndicator {
-    color: rgba($color-black, 0.8);
+    color: $color-black;
     fill: rgba($color-black, 0.8);;
   }
   background-color: $color-gray;

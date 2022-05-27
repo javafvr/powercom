@@ -167,7 +167,7 @@ const latestActivities = ref([
     <aside class="menu">
       <SidebarSlider @side-menu:state="onCloseClickHandler($event)">
         <div :class="$style.w100" v-show="isSidebarOpened">
-          <h4 :class="[$style.title4, $style.mbXS]">Areas</h4>
+          <h4 :class="[$style.title4]" style="margin-bottom: 19px;">Areas</h4>
           <div :class="[$style.mbXS]">
             <Search
               v-model="filteredTree"
